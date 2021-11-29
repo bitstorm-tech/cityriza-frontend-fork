@@ -1,0 +1,17 @@
+<script lang="ts">
+  export let label: string;
+  export let id = label;
+  export let type = 'text';
+  export let placeholder = '';
+</script>
+
+<div>
+  <label for={id} class="pl-1 text-xs">{label}</label>
+  <input
+    class="p-2 w-full border rounded-md hover:border-primary focus:border-primary focus:outline-none"
+    {id}
+    {type}
+    {placeholder}
+    on:change
+  />
+</div>

@@ -1,4 +1,4 @@
 <script lang="ts">
 </script>
 
-<button class="bg-primary text-white p-1 border border-white"><slot /></button>
+<button class="bg-primary text-white p-2 border border-white rounded-md"><slot /></button>

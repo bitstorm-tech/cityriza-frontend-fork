@@ -1,5 +1,5 @@
 <script lang="ts">
-  import HamburgerIcon from '../ui/HamburgerIcon.svelte';
+  import HamburgerIcon from '../icons/HamburgerIcon.svelte';
   import Link from '../ui/Link.svelte';
 </script>
 

@@ -6,10 +6,15 @@
 </script>
 
 <Input label="Firmenname" type="text" />
+<Input label="Straße und Hausnummer" type="text" />
+<div class="flex space-x-2">
+  <Input label="PLZ" type="text" />
+  <Input label="Stadt" type="text" />
+</div>
 <Input label="E-Mail" type="email" />
 <Input label="Passwort" type="password" />
 <Input label="USt ID (optional)" type="text" />
-<div class="flex justify-between">
+<div class="flex flex-col justify-between">
   <Button>Registrieren</Button>
   <div class="flex space-x-1 text-xs">
     <span>Bereits registriert?</span>

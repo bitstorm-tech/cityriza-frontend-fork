@@ -10,7 +10,7 @@
 <div class="flex items-center justify-center mt-10 mb-32">
   <div class="w-1/2 lg:w-1/3 space-y-3">
     <h1 class="text-center">Bei Cityriza registrieren</h1>
-    <Checkbox label="Sie sind eine Firma?" on:ontoggle={() => (userRegistration = !userRegistration)} />
+    <Checkbox label="Als Firma anmelden" on:ontoggle={() => (userRegistration = !userRegistration)} />
     {#if userRegistration}
       <UserRegistration />
     {:else}

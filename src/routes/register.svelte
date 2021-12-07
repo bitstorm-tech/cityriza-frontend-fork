@@ -1,6 +1,4 @@
 <script lang="ts">
-  import Link from '../components/ui/Link.svelte';
-  import Button from '../components/ui/Button.svelte';
   import Checkbox from '../components/ui/Checkbox.svelte';
   import UserRegistration from '../components/registration/UserRegistration.svelte';
   import CompanyRegistration from '../components/registration/CompanyRegistration.svelte';
@@ -8,9 +6,9 @@
 </script>
 
 <div class="flex items-center justify-center mt-10 mb-32">
-  <div class="w-1/2 lg:w-1/3 space-y-3">
-    <h1 class="text-center">Bei Cityriza registrieren</h1>
-    <Checkbox label="Als Firma anmelden" on:ontoggle={() => (userRegistration = !userRegistration)} />
+  <div class="w-5/6 lg:w-1/3 space-y-3">
+    <h1 class="text-center font-caveat text-4xl mb-4">Bei Cityriza registrieren</h1>
+    <Checkbox label="Als Firma registrieren" on:ontoggle={() => (userRegistration = !userRegistration)} />
     {#if userRegistration}
       <UserRegistration />
     {:else}

@@ -6,7 +6,7 @@
 
 {#if show}
   <div class="flex border border-primary p-4 space-x-4">
-    <WarningIcon size={10} />
+    <WarningIcon size={6} />
     <span><slot /> </span>
   </div>
 {/if}

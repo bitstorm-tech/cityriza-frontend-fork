@@ -14,6 +14,6 @@
     {type}
     {placeholder}
     on:change
-    on:input={($event) => (value = $event.target.value)}
+    on:input={(event) => (value = event.target.value)}
   />
 </div>

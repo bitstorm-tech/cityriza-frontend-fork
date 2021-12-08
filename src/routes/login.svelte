@@ -13,7 +13,7 @@
       <Button>Anmelden</Button>
       <div class="flex text-xs space-x-1">
         <span>Noch keinen Account?</span>
-        <Link href="/register">Registrieren</Link>
+        <Link href="/registration">Registrieren</Link>
       </div>
     </div>
   </div>

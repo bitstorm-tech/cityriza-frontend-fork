@@ -1,5 +1,6 @@
 <script lang="ts">
   import Button from '../ui/Button.svelte';
+  import { goto } from '$app/navigation';
 </script>
 
 <div class="relative">
@@ -10,6 +11,8 @@
   </div>
 
   <div class="absolute bottom-16 left-16">
-    <Button>JETZT WERBEKUNDE ODER <br /> STANDORTPARTNER WERDEN</Button>
+    <Button on:click={() => goto('/registration?type=company')}>
+      JETZT WERBEKUNDE ODER <br /> STANDORTPARTNER WERDEN
+    </Button>
   </div>
 </div>

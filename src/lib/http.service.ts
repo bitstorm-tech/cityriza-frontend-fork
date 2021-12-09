@@ -1,8 +1,8 @@
-const VITE_BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST;
+const BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST;
 const headers = { 'Content-Type': 'application/json' };
 
 export function createUrl(path: string): string {
-  return `${VITE_BACKEND_HOST}${path}`;
+  return `${BACKEND_HOST}${path}`;
 }
 
 export function post(path: string, payload): Promise<Response> {

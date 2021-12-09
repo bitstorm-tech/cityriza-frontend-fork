@@ -2,29 +2,33 @@
   import { goto } from '$app/navigation';
   import Input from '../ui/Input.svelte';
   import WarningMessage from '../ui/WarningMessage.svelte';
-  import { createUser } from '$lib/user.service';
+  import { createUser, getInvalidUserFormFields } from '$lib/user/user.service';
   import RegisterButton from './RegisterButton.svelte';
 
-  let isError = false;
-  let email = '';
-  let password = '';
+  let errorMessage: string;
 
-  async function register() {
-    isError = email.length === 0 || password.length === 0;
-    if (!isError) {
-      const response = await createUser(email, password);
-      if (response.ok) {
-        goto('/');
-      } else {
-        isError = true;
-      }
+  async function submit(event) {
+    errorMessage = null;
+    const form = event.target;
+    const invalidFields = getInvalidUserFormFields(form);
+
+    if (invalidFields.length > 0) {
+      errorMessage = 'Folgende Eingabefelder sind nicht korrekt: ' + invalidFields.join(', ');
+      return;
+    }
+
+    const response = await createUser(form.email.value, form.password.value);
+    if (response.ok) {
+      goto('/');
+    } else {
+      errorMessage = 'Leider ist bei der Registrierung etwas schief gegangen :(';
     }
   }
 </script>
 
-<div class="flex flex-col space-y-4">
-  <WarningMessage show={isError}>Leider ist bei der Registrierung etwas schief gegangen :(</WarningMessage>
-  <Input label="E-Mail" type="email" bind:value={email} />
-  <Input label="Passwort" type="password" bind:value={password} />
-  <RegisterButton on:register={register} />
-</div>
+<form class="flex flex-col space-y-4" on:submit|preventDefault={submit}>
+  <WarningMessage show={!!errorMessage}>{errorMessage}</WarningMessage>
+  <Input label="E-Mail" id="email" type="email" />
+  <Input label="Passwort" id="password" type="password" />
+  <RegisterButton />
+</form>

@@ -1,6 +1,6 @@
 <script lang="ts">
   export let label: string;
-  export let id = label;
+  export let id = label.toLowerCase();
   export let type = 'text';
   export let placeholder = '';
   export let value = '';

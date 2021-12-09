@@ -1,6 +1,5 @@
 <script context="module">
   export async function load({ page }) {
-    console.log('query params:', page.query.get('type'));
     return {
       props: {
         companyRegistration: page.query.get('type')?.toLowerCase() === 'company'

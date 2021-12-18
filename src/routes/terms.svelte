@@ -1,6 +1,5 @@
 <script>
-  import TermsContent from '../components/ui/TermsContent.svelte';
+  import TermsContent from '../components/legal_settings/terms/TermsContent.svelte';
 </script>
 
-<h1>AGB</h1>
 <TermsContent />

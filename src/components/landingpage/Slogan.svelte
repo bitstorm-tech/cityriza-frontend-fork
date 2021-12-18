@@ -3,9 +3,9 @@
   import { goto } from '$app/navigation';
 </script>
 
-<div class="relative">
+<div style="padding-top: 10rem;">
   <img src="images/cityriza_logoAndCityImage_munich_landscape.png" alt="Slogan" />
-  <div class="grid grid-rows-2 absolute top-6 left-1/3 font-caveat">
+  <div class="grid grid-rows-2 absolute top-6 left-1/3 font-caveat" style="top: 7rem;">
     <span class="text-8xl justify-self-start">Werde sichtbar</span>
     <span class="text-4xl text-primary justify-self-end">und erlebe Dein Netzwerk</span>
   </div>

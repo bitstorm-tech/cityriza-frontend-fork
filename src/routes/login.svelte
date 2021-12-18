@@ -4,7 +4,7 @@
   import Button from '../components/ui/Button.svelte';
 </script>
 
-<div class="flex items-center justify-center mt-10 mb-32">
+<div class="flex items-center justify-center mt-10 mb-32" style="padding-top: 3rem;">
   <div class="w-5/6 lg:w-1/3 space-y-3">
     <h1 class="text-center font-caveat text-4xl mb-4">Bei Cityriza anmelden</h1>
     <Input label="E-Mail" type="email" />

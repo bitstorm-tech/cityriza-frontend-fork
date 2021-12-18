@@ -3,8 +3,8 @@
   import Link from '../ui/Link.svelte';
 </script>
 
-<nav class="flex bg-primary place-content-between p-4 text-white">
-  <Link href="/" hoverUnderline>CITIRIZA</Link>
+<nav class="flex bg-primary place-content-between p-4 text-white" style="position:fixed; top:0; width: 100vw;">
+  <Link href="/" hoverUnderline>CITYRIZA</Link>
   <div class="flex space-x-3">
     <!-- <Link href="/campaign" hoverUnderline>Kampagnie erstellen</Link>
     <span>|</span> -->

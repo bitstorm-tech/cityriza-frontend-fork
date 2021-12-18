@@ -15,7 +15,7 @@
   export let companyRegistration = false;
 </script>
 
-<div class="flex items-center justify-center mt-10 mb-32">
+<div class="flex items-center justify-center mt-10 mb-32" style="padding-top: 3rem;">
   <div class="w-5/6 lg:w-1/3 space-y-3">
     <h1 class="text-center font-caveat text-4xl mb-4">Bei Cityriza registrieren</h1>
     <Checkbox bind:checked={companyRegistration} label="Als Werbekunde oder Standortpartner registrieren" />

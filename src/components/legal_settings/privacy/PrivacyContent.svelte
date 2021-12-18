@@ -25,7 +25,7 @@
 
 <style>
   .mainPadding {
-    padding: 0 3rem;
+    padding: 5rem 3rem;
   }
   .title {
     font-size: 2rem;

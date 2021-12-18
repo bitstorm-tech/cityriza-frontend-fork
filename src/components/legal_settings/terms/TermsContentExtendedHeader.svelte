@@ -35,7 +35,4 @@
     color: rgb(255, 95, 66);
     font-size: 2rem;
   }
-  .claimCityriza {
-    font-size: 1.25rem;
-  }
 </style>

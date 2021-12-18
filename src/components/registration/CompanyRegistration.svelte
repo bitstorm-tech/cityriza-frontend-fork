@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
+
   import { companyFormToObject, getInvalidCompanyFormFields } from '$lib/company/company.service';
   import { post } from '$lib/http.service';
   import Input from '../ui/Input.svelte';
@@ -22,6 +24,7 @@
 
     if (response.ok) {
       alert('Registrierung war erfolgreich!');
+      goto('/');
     } else {
       errorMessage = 'Leider ist bei der Registrierung etwas schief gegangen :(';
       scrollY = 0;

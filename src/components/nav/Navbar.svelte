@@ -6,7 +6,10 @@
   let showHamburgerModal = false;
 </script>
 
-<nav class="flex bg-primary place-content-between p-4 text-white" style="position:fixed; top:0; width: 100vw;">
+<nav
+  class="flex bg-primary place-content-between p-4 text-white"
+  style="z-index: 10; position:fixed; top:0; width: 100vw;"
+>
   <Link href="/" hoverUnderline>CITYRIZA</Link>
   <div class="flex space-x-3">
     <!-- <Link href="/campaign" hoverUnderline>Kampagnie erstellen</Link>
@@ -19,12 +22,12 @@
   {#if showHamburgerModal}
     <Modal on:cancel={() => (showHamburgerModal = false)} {title} {showHamburgerModal}>
       <ul>
-        <h1 style="color: rgb(255, 95, 66); font-size: 1.5rem; margin-top: 15px;">Konto</h1>
-        <li style="color: #000; font-size: 1.15rem; margin-top: 10px;">Login</li>
-        <h1 style="color: rgb(255, 95, 66); font-size: 1.5rem; margin-top: 15px;">Settings</h1>
-        <li style="color: #000; font-size: 1.15rem; margin-top: 10px;">AGB</li>
-        <li style="color: #000; font-size: 1.15rem; margin-top: 10px;">Datenschutz</li>
-        <li style="color: #000; font-size: 1.15rem; margin-top: 10px;">Impressum</li>
+        <h1>Konto</h1>
+        <li><Link on:cancel={() => (showHamburgerModal = false)} href="/login" hoverUnderline>Login</Link></li>
+        <h1>Settings</h1>
+        <li><Link on:cancel={() => (showHamburgerModal = false)} href="/terms" hoverUnderline>AGB</Link></li>
+        <li><Link on:cancel={() => (showHamburgerModal = false)} href="/privacy" hoverUnderline>Datenschutz</Link></li>
+        <li><Link on:cancel={() => (showHamburgerModal = false)} href="/imprint" hoverUnderline>Impressum</Link></li>
       </ul>
     </Modal>
   {/if}
@@ -36,5 +39,13 @@
     border-bottom: 1px solid #ccc;
     font-family: 'Roboto Slab', sans-serif;
     color: rgb(255, 95, 66);
+    color: rgb(255, 95, 66);
+    font-size: 1.5rem;
+    margin-top: 15px;
+  }
+  li {
+    color: #000;
+    font-size: 1.15rem;
+    margin-top: 10px;
   }
 </style>

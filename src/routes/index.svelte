@@ -1,5 +1,5 @@
 <script>
-  import Slogan from '../components/landingpage/Slogan.svelte';
+  import Homepage from '../components/landingpage/Homepage.svelte';
 </script>
 
-<Slogan />
+<Homepage />

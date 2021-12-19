@@ -26,7 +26,7 @@
 
 <style>
   .mainPadding {
-    padding: 5rem 3rem;
+    padding: 2rem 3rem 2rem;
   }
   .termsHeader {
     float: left;

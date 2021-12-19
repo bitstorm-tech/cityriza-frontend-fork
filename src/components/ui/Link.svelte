@@ -3,7 +3,7 @@
   import { createEventDispatcher } from 'svelte';
   export let hoverUnderline = false;
   const hoverEffect = hoverUnderline ? 'hover:underline' : 'hover:text-primary';
-  export let showHamburgerModal = '';
+  export let showHamburgerModal;
   const dispatch = createEventDispatcher();
 
   function closeModal() {

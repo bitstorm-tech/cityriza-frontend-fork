@@ -7,7 +7,7 @@ const config = {
         primary: '#ff5f42'
       },
       fontFamily: {
-        sans: ['Tamoha', 'Helvetica', 'Arial', 'sans-serif'],
+        sans: ['Tahoma', 'Helvetica', 'Arial', 'sans-serif'],
         caveat: 'Caveat'
       }
     }

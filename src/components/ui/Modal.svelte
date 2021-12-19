@@ -3,10 +3,15 @@
   import Button from './Button.svelte';
   export let title;
   export let showHamburgerModal;
+  export let showForm;
   const dispatch = createEventDispatcher();
 
   function closeModal() {
     dispatch('cancel');
+    showHamburgerModal = false;
+  }
+  function submitForm() {
+    dispatch('submit');
     showHamburgerModal = false;
   }
 </script>
@@ -23,6 +28,11 @@
     <slot name="footer">
       <Button on:click={closeModal}>Schließen</Button>
     </slot>
+    {#if showForm}
+      <slot name="submit">
+        <Button on:click={submitForm}>Sichern</Button>
+      </slot>
+    {/if}
   </footer>
 </div>
 

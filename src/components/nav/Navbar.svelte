@@ -44,6 +44,14 @@
             >Impressum</Link
           >
         </li>
+        <li>
+          <Link
+            on:cancel={() => (showHamburgerModal = false)}
+            {showHamburgerModal}
+            href="admin/network/networks"
+            hoverUnderline>Admin</Link
+          >
+        </li>
       </ul>
     </Modal>
   {/if}

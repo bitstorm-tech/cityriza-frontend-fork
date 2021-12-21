@@ -4,6 +4,7 @@
   import Modal from '../ui/Modal.svelte';
   let title = 'Willkommen bei Cityriza';
   let showHamburgerModal = false;
+  let showForm = false;
 </script>
 
 <nav
@@ -20,13 +21,13 @@
     </div>
   </div>
   {#if showHamburgerModal}
-    <Modal on:cancel={() => (showHamburgerModal = false)} {title} {showHamburgerModal}>
+    <Modal on:cancel={() => (showHamburgerModal = false)} {title} {showHamburgerModal} {showForm}>
       <ul>
         <h1>Konto</h1>
         <li>
-          <Link on:cancel={() => (showHamburgerModal = false)} {showHamburgerModal} href="/login" hoverUnderline
-            >Login</Link
-          >
+          <Link on:cancel={() => (showHamburgerModal = false)} {showHamburgerModal} href="/login" hoverUnderline>
+            Login
+          </Link>
         </li>
         <h1>Settings</h1>
         <li>
@@ -49,8 +50,10 @@
             on:cancel={() => (showHamburgerModal = false)}
             {showHamburgerModal}
             href="admin/network/networks"
-            hoverUnderline>Admin</Link
+            hoverUnderline
           >
+            Admin
+          </Link>
         </li>
       </ul>
     </Modal>

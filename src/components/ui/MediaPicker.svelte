@@ -6,7 +6,7 @@
   let fileInput;
   let imagePreview;
 
-  function pictureSelected(event) {
+  function fileSelected(event) {
     const file = event.srcElement.files[0];
 
     if (!file) {
@@ -20,7 +20,7 @@
 </script>
 
 <Button on:click={() => fileInput.click()}>Bild auswählen</Button>
-<input bind:this={fileInput} on:change={pictureSelected} type="file" hidden />
+<input bind:this={fileInput} on:change={fileSelected} type="file" hidden />
 {#if imagePreview}
   <img src={imagePreview} alt="Gewähltes Bild" class="w-screen md:w-2/3 self-center" />
 {/if}

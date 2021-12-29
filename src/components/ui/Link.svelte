@@ -3,13 +3,6 @@
   import { createEventDispatcher } from 'svelte';
   export let hoverUnderline = false;
   const hoverEffect = hoverUnderline ? 'hover:underline' : 'hover:text-primary';
-  export let showHamburgerModal = false;
-  const dispatch = createEventDispatcher();
-
-  function closeModal() {
-    dispatch('cancel');
-    showHamburgerModal = false;
-  }
 </script>
 
-<a on:click={closeModal} class={hoverEffect} {href}><slot /></a>
+<a class={hoverEffect} {href} on:click><slot /></a>

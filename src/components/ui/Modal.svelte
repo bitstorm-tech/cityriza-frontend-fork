@@ -2,17 +2,15 @@
   import { createEventDispatcher } from 'svelte';
   import Button from './Button.svelte';
   export let title;
-  export let showHamburgerModal;
   export let showForm;
   const dispatch = createEventDispatcher();
 
   function closeModal() {
     dispatch('cancel');
-    showHamburgerModal = false;
   }
+
   function submitForm() {
     dispatch('submit');
-    showHamburgerModal = false;
   }
 </script>
 

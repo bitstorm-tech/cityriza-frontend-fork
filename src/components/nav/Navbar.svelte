@@ -7,14 +7,11 @@
   let showForm = false;
 </script>
 
-<nav
-  class="flex bg-primary place-content-between p-4 text-white"
-  style="z-index: 10; position:fixed; top:0; width: 100vw;"
->
+<nav class="flex bg-primary place-content-between p-4 text-white sticky top-0">
   <Link href="/" hoverUnderline>CITYRIZA</Link>
   <div class="flex space-x-3">
-    <!-- <Link href="/campaign" hoverUnderline>Kampagnie erstellen</Link>
-    <span>|</span> -->
+    <Link href="/campaign" hoverUnderline>Kampagnie erstellen</Link>
+    <span>|</span>
     <Link href="/login" hoverUnderline>LOGIN</Link>
     <div on:click={() => (showHamburgerModal = true)}>
       <HamburgerIcon />

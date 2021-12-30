@@ -11,11 +11,16 @@
   $: errorMessage = endDate && startDate > endDate ? 'Das Startdatum muss vor dem Endedatum liegen' : '';
 
   function save() {
-    post('/api/campaigns', { startDate, endDate, file });
+    const formData = new FormData();
+    formData.append('startDate', startDate);
+    formData.append('endDate', endDate);
+    formData.append('file', file);
+    post('/api/campaigns', formData, true);
   }
 
   function fileSelected(event) {
-    console.log('File:', event.detail.file);
+    file = event.detail.file;
+    console.log('File:', file);
   }
 </script>
 

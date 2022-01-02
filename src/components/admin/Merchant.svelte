@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Button from '../../components/ui/Button.svelte';
   import Modal from '../../components/ui/Modal.svelte';
   let showHamburgerModal = false;
@@ -18,9 +18,10 @@
     <p class="headerLabel15">1</p>
     <p class="headerLabel15" style="margin-right: 5%;">57</p>
     <Button
+      caption="Edit"
       on:click={() => ((showHamburgerModal = true), (editNetwork = true), (showForm = true), (title = 'Edit Merchant'))}
-      {background}>EDIT</Button
-    >
+      {background}
+    />
   </div>
 </div>
 {#if showHamburgerModal && editNetwork}

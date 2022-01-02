@@ -1,13 +1,29 @@
 <script lang="ts">
   export let type = '';
   export let background = '';
+  export let formIsValid = true;
+  export let caption;
+  export let cssClass = 'bg-primary text-white p-2 border border-white rounded-md hover:shadow-lg';
 </script>
 
-<button
-  class="bg-primary text-white p-2 border border-white rounded-md hover:shadow-lg"
-  {type}
-  style="background: {background}"
-  on:click
->
-  <slot />
-</button>
+{#if type === 'submit'}
+  <button
+    class={!formIsValid
+      ? 'buttonDisabled text-white p-2 border border-white rounded-md'
+      : 'submitOk text-white p-2 border border-white rounded-md hover:shadow-lg'}
+    {type}
+    disabled={!formIsValid}
+    on:click>{caption}</button
+  >
+{:else}
+  <button class={cssClass} {type} style="background: {background}" on:click>{caption}</button>
+{/if}
+
+<style>
+  .buttonDisabled {
+    background: rgba(177, 177, 177, 0.3);
+  }
+  .submitOk {
+    background: black;
+  }
+</style>

@@ -19,7 +19,7 @@
   }
 </script>
 
-<Button on:click={() => fileInput.click()}>Bild auswählen</Button>
+<Button caption="Bild auswählen" on:click={() => fileInput.click()} />
 <input bind:this={fileInput} on:change={fileSelected} type="file" hidden />
 {#if imagePreview}
   <img src={imagePreview} alt="Gewähltes Bild" class="w-screen md:w-2/3 self-center" />

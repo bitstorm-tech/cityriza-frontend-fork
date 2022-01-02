@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import Input from '../../components/ui/Input.svelte';
   import Button from './Button.svelte';
@@ -19,7 +19,7 @@
     dispatch('cancel');
     showHamburgerModal = false;
   }
-  function submit() {
+  function submitForm() {
     dispatch('submit');
     showHamburgerModal = false;
   }
@@ -50,7 +50,7 @@
   {#if title}
     <h1>{title}</h1>
   {/if}
-  <form on:submit|preventDefault>
+  <form on:submit|preventDefault={submitForm}>
     <div class="content">
       {#if !showForm}
         <slot />
@@ -99,19 +99,19 @@
     </div>
     <footer>
       <slot name="footer">
-        <Button on:click={closeModal}>Schließen</Button>
+        <Button caption="Schließen" on:click={closeModal} />
       </slot>
       {#if showForm}
-        <!-- <slot name="submit">
-          <Button >Sichern</Button>
-        </slot> -->
-        <button
-          class={!formIsValid
-            ? 'buttonDisabled text-white p-2 border border-white rounded-md'
-            : 'submitOk text-white p-2 border border-white rounded-md hover:shadow-lg'}
-          type="submit"
-          disabled={!formIsValid}
-          on:click>Sichern</button
+        <slot name="submit">
+          <Button caption="Sichern" {formIsValid} type="submit" />
+          <!-- <button
+            class={!formIsValid
+              ? 'buttonDisabled text-white p-2 border border-white rounded-md'
+              : 'submitOk text-white p-2 border border-white rounded-md hover:shadow-lg'}
+            type="submit"
+            disabled={!formIsValid}
+            on:click>Sichern</button -->
+          ></slot
         >
       {/if}
     </footer>
@@ -157,12 +157,6 @@
 
   footer {
     padding: 1rem;
-  }
-  .buttonDisabled {
-    background: rgba(177, 177, 177, 0.3);
-  }
-  .submitOk {
-    background: black;
   }
   @media (min-width: 768px) {
     .modal {

@@ -33,6 +33,6 @@
       <Input label="Kampagnienende (inklusive)" type="date" bind:value={endDate} />
     </div>
     <MediaPicker on:fileSelected={fileSelected} />
-    <Button type="submit">Speichern</Button>
+    <Button caption="Speichern" type="submit" />
   </form>
 </div>

@@ -13,13 +13,15 @@
     <h1 class="text-center font-caveat text-4xl mb-4">
       Netzwerk-Liste
       <Button
+        caption="+"
         on:click={() => (
           (showHamburgerModal = true), (createNetwork = true), (showForm = true), (title = 'Create Network')
-        )}>+</Button
-      >
+        )}
+      />
     </h1>
     <a class="headerLinkBackTo" href="/">Zurück zur Startseite</a>
     <br />
+
     <Network />
   </div>
 </div>

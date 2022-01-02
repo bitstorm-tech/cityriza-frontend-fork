@@ -4,7 +4,7 @@
 </script>
 
 <div class="flex flex-col space-y-2 justify-between">
-  <Button type="submit">Registrieren</Button>
+  <Button caption="Registrieren" type="submit" />
   <div class="flex space-x-1 text-xs">
     <span>Bereits registriert?</span>
     <Link href="/login">Anmelden</Link>

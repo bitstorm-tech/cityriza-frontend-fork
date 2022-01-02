@@ -11,8 +11,9 @@
   </div>
 
   <div class="absolute bottom-16 left-16">
-    <Button on:click={() => goto('/registration?type=company')}>
-      JETZT WERBEKUNDE ODER <br /> STANDORTPARTNER WERDEN
-    </Button>
+    <Button
+      caption="JETZT WERBEKUNDE ODER <br /> STANDORTPARTNER WERDEN"
+      on:click={() => goto('/registration?type=company')}
+    />
   </div>
 </div>

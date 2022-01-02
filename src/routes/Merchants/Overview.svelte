@@ -10,7 +10,7 @@
     <Input label="E-Mail" type="email" />
     <Input label="Passwort" type="password" />
     <div class="flex flex-col space-y-2">
-      <Button>Anmelden</Button>
+      <Button caption="Anmelden" />
       <div class="flex text-xs space-x-1">
         <span>Noch keinen Account?</span>
         <Link href="/registration">Registrieren</Link>

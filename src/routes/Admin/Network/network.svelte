@@ -14,10 +14,11 @@
     <h1 class="text-center font-caveat text-4xl mb-4">
       Netzwerk-Name
       <Button
+        caption="+"
         on:click={() => (
           (showHamburgerModal = true), (createNetwork = true), (showForm = true), (title = 'Create Merchant')
-        )}>+</Button
-      >
+        )}
+      />
     </h1>
     <a class="headerLinkBackTo" href="/admin/network/networks" on:click={loadNetworks}>Zurück zur Netzwerk-Liste</a>
     <br />

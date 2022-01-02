@@ -27,7 +27,7 @@
     <Input label="E-Mail" type="email" bind:value={email} />
     <Input label="Passwort" type="password" bind:value={password} />
     <div class="flex flex-col space-y-2">
-      <Button on:click={signIn}>Anmelden</Button>
+      <Button caption="Anmelden" on:click={signIn} />
       <div class="flex text-xs space-x-1">
         <span>Noch keinen Account?</span>
         <Link href="/registration">Registrieren</Link>

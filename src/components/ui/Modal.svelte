@@ -1,17 +1,48 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import Input from '../../components/ui/Input.svelte';
   import Button from './Button.svelte';
   export let title;
+  export let showHamburgerModal;
   export let showForm;
+  let formIsValid = false;
+  let enteredNameOfNetwork = '';
+  let enteredAmountOfDisplays = '';
+  let enteredNameOfMerchant = '';
+  let memberStartDate = '';
+  let memberEndDate = '';
+  let networkRelated = false;
+  let merchantRelated = false;
   const dispatch = createEventDispatcher();
 
   function closeModal() {
     dispatch('cancel');
+    showHamburgerModal = false;
+  }
+  function submit() {
+    dispatch('submit');
+    showHamburgerModal = false;
   }
 
-  function submitForm() {
-    dispatch('submit');
+  $: if (
+    (enteredNameOfNetwork.length > 0 && enteredAmountOfDisplays.length > 0) ||
+    (enteredNameOfMerchant.length > 0 && memberStartDate.length > 0 && memberEndDate.length > 0)
+  ) {
+    formIsValid = true;
+  } else {
+    formIsValid = false;
   }
+  $: if (title === 'Create Network' || title === 'Edit Network') {
+    networkRelated = true;
+  } else {
+    networkRelated = false;
+  }
+  $: if (title === 'Create Merchant' || title === 'Edit Merchant') {
+    merchantRelated = true;
+  } else {
+    merchantRelated = false;
+  }
+  $: console.log(formIsValid);
 </script>
 
 <div class="modal-backdrop" on:click={closeModal} />
@@ -19,19 +50,72 @@
   {#if title}
     <h1>{title}</h1>
   {/if}
-  <div class="content">
-    <slot />
-  </div>
-  <footer>
-    <slot name="footer">
-      <Button on:click={closeModal}>Schließen</Button>
-    </slot>
-    {#if showForm}
-      <slot name="submit">
-        <Button on:click={submitForm}>Sichern</Button>
+  <form on:submit|preventDefault>
+    <div class="content">
+      {#if !showForm}
+        <slot />
+      {/if}
+      <!-- networkRelated -->
+      {#if showForm && networkRelated}
+        <Input
+          bind:value={enteredNameOfNetwork}
+          id="nameOfNetwork"
+          type="text"
+          label="Name des Netzwerks"
+          placeholder="Name des Netzwerks"
+        />
+        <Input
+          bind:value={enteredAmountOfDisplays}
+          id="amountOfDisplays"
+          type="text"
+          label="Anzahl der Displays"
+          placeholder="Anzahl der Displays"
+        />
+      {/if}
+      <!-- merchantRelated -->
+      {#if showForm && merchantRelated}
+        <Input
+          bind:value={enteredNameOfMerchant}
+          id="nameOfMerchant"
+          type="text"
+          label="Name des Merchants"
+          placeholder="Name des Merchants"
+        />
+        <Input
+          bind:value={memberStartDate}
+          id="memberStartDate"
+          type="text"
+          label="Start der Mitgliedschaft"
+          placeholder="Start der Mitgliedschaft dd-mm-yyyy"
+        />
+        <Input
+          bind:value={memberEndDate}
+          id="memberEndDate"
+          type="text"
+          label="Ende der Mitgliedschaft"
+          placeholder="Ende der Mitgliedschaft dd-mm-yyyy"
+        />
+      {/if}
+    </div>
+    <footer>
+      <slot name="footer">
+        <Button on:click={closeModal}>Schließen</Button>
       </slot>
-    {/if}
-  </footer>
+      {#if showForm}
+        <!-- <slot name="submit">
+          <Button >Sichern</Button>
+        </slot> -->
+        <button
+          class={!formIsValid
+            ? 'buttonDisabled text-white p-2 border border-white rounded-md'
+            : 'submitOk text-white p-2 border border-white rounded-md hover:shadow-lg'}
+          type="submit"
+          disabled={!formIsValid}
+          on:click>Sichern</button
+        >
+      {/if}
+    </footer>
+  </form>
 </div>
 
 <style>
@@ -74,7 +158,12 @@
   footer {
     padding: 1rem;
   }
-
+  .buttonDisabled {
+    background: rgba(177, 177, 177, 0.3);
+  }
+  .submitOk {
+    background: black;
+  }
   @media (min-width: 768px) {
     .modal {
       width: 40rem;

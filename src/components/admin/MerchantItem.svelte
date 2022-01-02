@@ -7,8 +7,8 @@
   let title = '';
   export let id = '';
   export let name = '';
-  export let amountOfDisplays = 0;
-  export let amountOfMerchants = 0;
+  export let amountOfDisplays = '0';
+  export let merchants = '0';
   $: background = 'black';
   function loadMerchant() {}
 </script>

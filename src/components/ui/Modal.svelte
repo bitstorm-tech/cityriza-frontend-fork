@@ -6,11 +6,11 @@
   export let showHamburgerModal;
   export let showForm;
   let formIsValid = false;
-  let enteredNameOfNetwork = '';
-  let enteredAmountOfDisplays = '';
-  let enteredNameOfMerchant = '';
-  let memberStartDate = '';
-  let memberEndDate = '';
+  let name = '';
+  let amountOfDisplays = '';
+  let merchants = '';
+  let startDate = '';
+  let endDate = '';
   let networkRelated = false;
   let merchantRelated = false;
   const dispatch = createEventDispatcher();
@@ -19,14 +19,10 @@
     dispatch('cancel');
     showHamburgerModal = false;
   }
-  function submitForm() {
-    dispatch('submit');
-    showHamburgerModal = false;
-  }
 
   $: if (
-    (enteredNameOfNetwork.length > 0 && enteredAmountOfDisplays.length > 0) ||
-    (enteredNameOfMerchant.length > 0 && memberStartDate.length > 0 && memberEndDate.length > 0)
+    (name.length > 0 && amountOfDisplays.length > 0 && merchants.length > 0) ||
+    (name.length > 0 && startDate.length > 0 && endDate.length > 0)
   ) {
     formIsValid = true;
   } else {
@@ -42,7 +38,13 @@
   } else {
     merchantRelated = false;
   }
-  $: console.log(formIsValid);
+  function submitForm() {
+    dispatch('save', {
+      name: name,
+      amountOfDisplays: amountOfDisplays,
+      merchants: merchants
+    });
+  }
 </script>
 
 <div class="modal-backdrop" on:click={closeModal} />
@@ -50,64 +52,61 @@
   {#if title}
     <h1>{title}</h1>
   {/if}
-  <form on:submit|preventDefault={submitForm}>
-    <div class="content">
-      {#if !showForm}
-        <slot />
-      {/if}
-      <!-- networkRelated -->
-      {#if showForm && networkRelated}
+  <div class="content">
+    {#if !showForm}
+      <slot />
+    {/if}
+    <!-- networkRelated -->
+    {#if showForm && networkRelated}
+      <form on:submit|preventDefault={submitForm}>
+        <Input bind:value={name} id="name" type="text" label="Name des Netzwerks" placeholder="Name des Netzwerks" />
         <Input
-          bind:value={enteredNameOfNetwork}
-          id="nameOfNetwork"
-          type="text"
-          label="Name des Netzwerks"
-          placeholder="Name des Netzwerks"
-        />
-        <Input
-          bind:value={enteredAmountOfDisplays}
+          bind:value={amountOfDisplays}
           id="amountOfDisplays"
           type="text"
           label="Anzahl der Displays"
           placeholder="Anzahl der Displays"
         />
-      {/if}
-      <!-- merchantRelated -->
-      {#if showForm && merchantRelated}
         <Input
-          bind:value={enteredNameOfMerchant}
-          id="nameOfMerchant"
+          bind:value={merchants}
+          id="merchants"
           type="text"
-          label="Name des Merchants"
-          placeholder="Name des Merchants"
+          label="Anzahl der Merchants"
+          placeholder="Anzahl der Merchants"
         />
+        <footer>
+          <slot name="footer">
+            <Button caption="Schließen" on:click={closeModal} />
+          </slot>
+          {#if showForm}
+            <slot name="submit">
+              <Button caption="Sichern" {formIsValid} type="submit" />
+            </slot>
+          {/if}
+        </footer>
+      </form>
+    {/if}
+    <!-- merchantRelated -->
+    {#if showForm && merchantRelated}
+      <form on:submit|preventDefault={submitForm}>
+        <Input bind:value={name} id="name" type="text" label="Name des Merchants" placeholder="Name des Merchants" />
         <Input
-          bind:value={memberStartDate}
-          id="memberStartDate"
+          bind:value={startDate}
+          id="startDate"
           type="text"
           label="Start der Mitgliedschaft"
           placeholder="Start der Mitgliedschaft dd-mm-yyyy"
         />
         <Input
-          bind:value={memberEndDate}
-          id="memberEndDate"
+          bind:value={endDate}
+          id="endDate"
           type="text"
           label="Ende der Mitgliedschaft"
           placeholder="Ende der Mitgliedschaft dd-mm-yyyy"
         />
-      {/if}
-    </div>
-    <footer>
-      <slot name="footer">
-        <Button caption="Schließen" on:click={closeModal} />
-      </slot>
-      {#if showForm}
-        <slot name="submit">
-          <Button caption="Sichern" {formIsValid} type="submit" />
-        </slot>
-      {/if}
-    </footer>
-  </form>
+      </form>
+    {/if}
+  </div>
 </div>
 
 <style>
@@ -148,7 +147,7 @@
   }
 
   footer {
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 0;
   }
   @media (min-width: 768px) {
     .modal {

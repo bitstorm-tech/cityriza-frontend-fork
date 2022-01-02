@@ -2,18 +2,17 @@
   import Button from '../../components/ui/Button.svelte';
   import Link from '../../components/ui/Link.svelte';
   import Modal from '../../components/ui/Modal.svelte';
-  function loadNetwork() {}
   let showHamburgerModal = false;
   let editNetwork = false;
   let showForm = false;
   let title = '';
   export let id = '';
   export let name = '';
-  export let amountOfDisplays = 0;
-  export let amountOfMerchants = 0;
+  export let amountOfDisplays = '0';
+  export let merchants = '0';
   $: background = 'black';
   $: cssClass = 'float-right text-white px-1.5 mr-1 border border-white rounded-md hover:shadow-lg text-xs';
-  $: cssClassLink = '';
+  function loadNetwork() {}
 </script>
 
 <!-- network_entry -->
@@ -28,7 +27,7 @@
     {amountOfDisplays}
   </h4>
   <h4 class="float-left w-1/6 h-4 leading-4 text-center mr-1 text-sm">
-    {amountOfMerchants}
+    {merchants}
   </h4>
   <Button
     caption="Edit"

@@ -6,20 +6,27 @@
   import networkItems from '../../../components/stores/network-items-store.js';
 
   let showHamburgerModal = false;
-  let createNetwork = false;
   let showForm = false;
   let title = 'Netzwerk anlegen';
+
+  function addNetworkItem(event) {
+    showHamburgerModal = false;
+    const networkItemData = {
+      name: event.detail.name,
+      amountOfDisplays: event.detail.amountOfDisplays,
+      merchants: event.detail.merchants
+    };
+    networkItems.addNetworkItem(networkItemData);
+  }
 </script>
 
-<div class="flex items-center justify-center mt-10 mb-32" style="padding-top: 3rem;">
+<div class="flex items-center justify-center mt-10 mb-32">
   <div class="w-5/6 lg:w-3/3 space-y-3">
     <h1 class="text-center font-caveat text-4xl mb-4">
       Netzwerk-Liste
       <Button
         caption="+"
-        on:click={() => (
-          (showHamburgerModal = true), (createNetwork = true), (showForm = true), (title = 'Create Network')
-        )}
+        on:click={() => ((showHamburgerModal = true), (showForm = true), (title = 'Create Network'))}
       />
     </h1>
     <Link caption="Zurück zur Startseite" cssClass="headerLinkBackTo" href="/" />
@@ -35,17 +42,17 @@
           id={networkItem.id}
           name={networkItem.name}
           amountOfDisplays={networkItem.amountOfDisplays}
-          amountOfMerchants={networkItem.amountOfMerchants}
+          merchants={networkItem.merchants}
         />
       {/each}
     </section>
   </div>
 </div>
 
-{#if showHamburgerModal && createNetwork}
+{#if showHamburgerModal}
   <Modal
     on:cancel={() => (showHamburgerModal = false)}
-    on:submit={() => (showHamburgerModal = false)}
+    on:save={addNetworkItem}
     {title}
     {showForm}
     {showHamburgerModal}

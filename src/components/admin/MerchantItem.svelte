@@ -1,27 +1,29 @@
 <script lang="ts">
   import Button from '../../components/ui/Button.svelte';
   import Modal from '../../components/ui/Modal.svelte';
-  function loadNetwork() {}
   let showHamburgerModal = false;
   let editNetwork = false;
   let showForm = false;
-  let title = 'Netzwerk anlegen';
+  let title = '';
+  export let id = '';
+  export let name = '';
+  export let amountOfDisplays = 0;
+  export let amountOfMerchants = 0;
   $: background = 'black';
+  function loadMerchant() {}
 </script>
 
 <div class="resultWrapper">
-  <!-- label -->
   <p class="headerLabel50">Name</p>
   <p class="headerLabel15">Displays</p>
   <p class="headerLabel15">Merchants</p>
-  <!-- network_entry -->
   <div class="entryWrapper">
-    <a class="linkEntry" on:click={loadNetwork} href="../network/network">Network</a>
+    <a class="linkEntry" on:click={loadMerchant} href="/terms">{name}</a>
     <p class="headerLabel15">1</p>
     <p class="headerLabel15" style="margin-right: 5%;">57</p>
     <Button
       caption="Edit"
-      on:click={() => ((showHamburgerModal = true), (editNetwork = true), (showForm = true), (title = 'Edit Network'))}
+      on:click={() => ((showHamburgerModal = true), (editNetwork = true), (showForm = true), (title = 'Edit Merchant'))}
       {background}
     />
   </div>

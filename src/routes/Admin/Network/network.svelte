@@ -1,7 +1,7 @@
 <script lang="ts">
   import Modal from '../../../components/ui/Modal.svelte';
   import Button from '../../../components/ui/Button.svelte';
-  import Merchant from '../../../components/admin/Merchant.svelte';
+  import MerchantItem from '../../../components/admin/MerchantItem.svelte';
   import Link from '../../../components/ui/Link.svelte';
   let showHamburgerModal = false;
   let createNetwork = false;
@@ -22,7 +22,7 @@
     </h1>
     <Link caption="Zurück zur Netzwerk-Liste" cssClass="headerLinkBackTo" href="/admin/network/networks" />
     <br />
-    <Merchant />
+    <MerchantItem />
   </div>
 </div>
 {#if showHamburgerModal && createNetwork}

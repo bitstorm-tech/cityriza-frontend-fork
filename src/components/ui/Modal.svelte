@@ -104,15 +104,7 @@
       {#if showForm}
         <slot name="submit">
           <Button caption="Sichern" {formIsValid} type="submit" />
-          <!-- <button
-            class={!formIsValid
-              ? 'buttonDisabled text-white p-2 border border-white rounded-md'
-              : 'submitOk text-white p-2 border border-white rounded-md hover:shadow-lg'}
-            type="submit"
-            disabled={!formIsValid}
-            on:click>Sichern</button -->
-          ></slot
-        >
+        </slot>
       {/if}
     </footer>
   </form>

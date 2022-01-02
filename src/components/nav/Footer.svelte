@@ -4,12 +4,12 @@
 
 <section style="padding: 2rem 0;">
   <div class="flex space-x-3 justify-center">
-    <Link href="/terms">AGB</Link>
+    <Link caption="AGB" href="/terms" />
     <span>|</span>
-    <Link href="/privacy">Datenschutz</Link>
+    <Link caption="Datenschutz" href="/privacy" />
     <span>|</span>
-    <Link href="/imprint">Impresum</Link>
+    <Link caption="Impressum" href="/imprint" />
     <span>|</span>
-    <Link href="/contact">Kontakt</Link>
+    <Link caption="Kontakt" href="/contact" />
   </div>
 </section>

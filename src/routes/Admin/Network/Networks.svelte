@@ -1,6 +1,7 @@
 <script lang="ts">
   import Modal from '../../../components/ui/Modal.svelte';
   import Button from '../../../components/ui/Button.svelte';
+  import Link from '../../../components/ui/Link.svelte';
   import Network from '../../../components/admin/Network.svelte';
   let showHamburgerModal = false;
   let createNetwork = false;
@@ -19,9 +20,8 @@
         )}
       />
     </h1>
-    <a class="headerLinkBackTo" href="/">Zurück zur Startseite</a>
+    <Link caption="Zurück zur Startseite" cssClass="headerLinkBackTo" href="/" />
     <br />
-
     <Network />
   </div>
 </div>
@@ -35,13 +35,3 @@
     {showHamburgerModal}
   />
 {/if}
-
-<style>
-  .headerLinkBackTo {
-    text-align: center;
-    display: block;
-    margin: 0;
-    color: rgb(255, 95, 66);
-    font-size: 0.8rem;
-  }
-</style>

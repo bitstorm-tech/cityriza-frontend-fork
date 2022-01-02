@@ -8,11 +8,11 @@
 </script>
 
 <nav class="flex bg-primary place-content-between p-4 text-white sticky top-0">
-  <Link href="/" hoverUnderline>CITYRIZA</Link>
+  <Link caption="CITYRIZA" href="/" hoverUnderline />
   <div class="flex space-x-3">
-    <Link href="/campaign" hoverUnderline>Kampagnie erstellen</Link>
+    <Link caption="Kampagnie erstellen" href="/campaign" hoverUnderline />
     <span>|</span>
-    <Link href="/login" hoverUnderline>LOGIN</Link>
+    <Link caption="LOGIN" href="/login" hoverUnderline />
     <div on:click={() => (showHamburgerModal = true)}>
       <HamburgerIcon />
     </div>
@@ -22,20 +22,25 @@
       <ul>
         <h1>Konto</h1>
         <li>
-          <Link on:click={() => (showHamburgerModal = false)} href="/login" hoverUnderline>Login</Link>
+          <Link caption="Login" on:click={() => (showHamburgerModal = false)} href="/login" hoverUnderline />
         </li>
         <h1>Settings</h1>
         <li>
-          <Link on:click={() => (showHamburgerModal = false)} href="/terms" hoverUnderline>AGB</Link>
+          <Link caption="AGB" on:click={() => (showHamburgerModal = false)} href="/terms" hoverUnderline />
         </li>
         <li>
-          <Link on:click={() => (showHamburgerModal = false)} href="/privacy" hoverUnderline>Datenschutz</Link>
+          <Link caption="Datenschutz" on:click={() => (showHamburgerModal = false)} href="/privacy" hoverUnderline />
         </li>
         <li>
-          <Link on:click={() => (showHamburgerModal = false)} href="/imprint" hoverUnderline>Impressum</Link>
+          <Link caption="Impressum" on:click={() => (showHamburgerModal = false)} href="/imprint" hoverUnderline />
         </li>
         <li>
-          <Link on:click={() => (showHamburgerModal = false)} href="admin/network/networks" hoverUnderline>Admin</Link>
+          <Link
+            caption="Admin"
+            on:click={() => (showHamburgerModal = false)}
+            href="admin/network/networks"
+            hoverUnderline
+          />
         </li>
       </ul>
     </Modal>

@@ -2,11 +2,11 @@
   import Modal from '../../../components/ui/Modal.svelte';
   import Button from '../../../components/ui/Button.svelte';
   import Merchant from '../../../components/admin/Merchant.svelte';
+  import Link from '../../../components/ui/Link.svelte';
   let showHamburgerModal = false;
   let createNetwork = false;
   let showForm = false;
   let title = 'Netzwerk anlegen';
-  function loadNetworks() {}
 </script>
 
 <div class="flex items-center justify-center mt-10 mb-32" style="padding-top: 3rem;">
@@ -20,7 +20,7 @@
         )}
       />
     </h1>
-    <a class="headerLinkBackTo" href="/admin/network/networks" on:click={loadNetworks}>Zurück zur Netzwerk-Liste</a>
+    <Link caption="Zurück zur Netzwerk-Liste" cssClass="headerLinkBackTo" href="/admin/network/networks" />
     <br />
     <Merchant />
   </div>
@@ -34,13 +34,3 @@
     {showHamburgerModal}
   />
 {/if}
-
-<style>
-  .headerLinkBackTo {
-    text-align: center;
-    display: block;
-    margin: 0;
-    color: rgb(255, 95, 66);
-    font-size: 0.8rem;
-  }
-</style>

@@ -1,7 +1,6 @@
 <script lang="ts">
   import Button from '../../components/ui/Button.svelte';
   import Link from '../../components/ui/Link.svelte';
-  import merchantItems from '../../components/stores/merchant-items-store.js';
   import FormMerchantItem from './FormMerchantItem.svelte';
   let showHamburgerModal = false;
   let title = '';
@@ -12,16 +11,6 @@
   $: background = 'black';
   $: cssClass = 'float-right text-white px-1.5 mr-1 border border-white rounded-md hover:shadow-lg text-xs';
   function loadMerchant() {}
-
-  function addMerchantItem(event) {
-    showHamburgerModal = false;
-    const merchantItemData = {
-      name: event.detail.name,
-      startDate: event.detail.startDate,
-      endDate: event.detail.endDate
-    };
-    merchantItems.addMerchantItem(merchantItemData);
-  }
 </script>
 
 <div class="float-left w-full h-auto p-1.5 mb-1 bg-gray-200" {id}>
@@ -47,7 +36,7 @@
 {#if showHamburgerModal}
   <FormMerchantItem
     on:cancel={() => (showHamburgerModal = false)}
-    on:save={addMerchantItem}
+    on:save={() => (showHamburgerModal = false)}
     {showHamburgerModal}
     {title}
   />

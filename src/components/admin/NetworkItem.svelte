@@ -12,17 +12,7 @@
   $: background = 'black';
   $: cssClass = 'float-right text-white px-1.5 mr-1 border border-white rounded-md hover:shadow-lg text-xs';
   function loadNetwork() {
-    let nameNetwork = { name };
-  }
-
-  function addNetworkItem(event) {
-    showHamburgerModal = false;
-    const networkItemData = {
-      name: event.detail.name,
-      amountOfDisplays: event.detail.amountOfDisplays,
-      merchants: event.detail.merchants
-    };
-    networkItems.addNetworkItem(networkItemData);
+    // let nameNetwork = { name };
   }
 </script>
 
@@ -49,7 +39,7 @@
 {#if showHamburgerModal}
   <FormNetworkItem
     on:cancel={() => (showHamburgerModal = false)}
-    on:save={addNetworkItem}
+    on:save={() => (showHamburgerModal = false)}
     {showHamburgerModal}
     {title}
   />

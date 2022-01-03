@@ -8,16 +8,6 @@
   let showHamburgerModal = false;
   let title = '';
   export let nameNetwork = '';
-
-  function addMerchantItem(event) {
-    showHamburgerModal = false;
-    const merchantItemData = {
-      name: event.detail.name,
-      startDate: event.detail.startDate,
-      endDate: event.detail.endDate
-    };
-    merchantItems.addMerchantItem(merchantItemData);
-  }
 </script>
 
 <div class="flex items-center justify-center mt-10 mb-32">
@@ -51,7 +41,7 @@
 {#if showHamburgerModal}
   <FormMerchantItem
     on:cancel={() => (showHamburgerModal = false)}
-    on:save={addMerchantItem}
+    on:save={() => (showHamburgerModal = false)}
     {showHamburgerModal}
     {title}
   />

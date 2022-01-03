@@ -7,16 +7,6 @@
 
   let showHamburgerModal = false;
   let title = '';
-
-  function addNetworkItem(event) {
-    showHamburgerModal = false;
-    const networkItemData = {
-      name: event.detail.name,
-      amountOfDisplays: event.detail.amountOfDisplays,
-      merchants: event.detail.merchants
-    };
-    networkItems.addNetworkItem(networkItemData);
-  }
 </script>
 
 <div class="flex items-center justify-center mt-10 mb-32">
@@ -50,7 +40,7 @@
 {#if showHamburgerModal}
   <FormNetworkItem
     on:cancel={() => (showHamburgerModal = false)}
-    on:save={addNetworkItem}
+    on:save={() => (showHamburgerModal = false)}
     {showHamburgerModal}
     {title}
   />

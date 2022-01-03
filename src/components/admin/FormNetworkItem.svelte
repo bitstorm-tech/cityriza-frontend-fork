@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import networkItems from '../../components/stores/network-items-store.js';
   import Input from '../../components/ui/Input.svelte';
   import Button from '../../components/ui/Button.svelte';
   export let showHamburgerModal: boolean;
@@ -16,11 +17,13 @@
   }
 
   function submitForm() {
-    dispatch('save', {
+    const networkItemData = {
       name: name,
       amountOfDisplays: amountOfDisplays,
       merchants: merchants
-    });
+    };
+    networkItems.addNetworkItem(networkItemData);
+    dispatch('save');
   }
 
   $: if (name.length > 0 && amountOfDisplays.length > 0 && merchants.length > 0) {

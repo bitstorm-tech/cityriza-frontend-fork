@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
+  import merchantItems from '../../components/stores/merchant-items-store.js';
   import Input from '../../components/ui/Input.svelte';
   import Button from '../../components/ui/Button.svelte';
   export let showHamburgerModal: boolean;
@@ -16,11 +17,13 @@
   }
 
   function submitForm() {
-    dispatch('save', {
+    const merchantItemData = {
       name: name,
       startDate: startDate,
       endDate: endDate
-    });
+    };
+    merchantItems.addMerchantItem(merchantItemData);
+    dispatch('save');
   }
 
   $: if (name.length > 0 && startDate.length > 0 && endDate.length > 0) {
@@ -56,11 +59,9 @@
         <slot name="footer">
           <Button caption="Schließen" type="button" on:click={closeModal} />
         </slot>
-        <!-- {#if showForm} -->
         <slot name="submit">
           <Button caption="Sichern" {formIsValid} type="submit" />
         </slot>
-        <!-- {/if} -->
       </footer>
     </form>
   </div>

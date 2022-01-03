@@ -7,6 +7,7 @@
 
   let showHamburgerModal = false;
   let title = '';
+  export let nameNetwork = '';
 
   function addMerchantItem(event) {
     showHamburgerModal = false;
@@ -22,16 +23,18 @@
 <div class="flex items-center justify-center mt-10 mb-32">
   <div class="w-5/6 lg:w-3/3 space-y-3">
     <h1 class="text-center font-caveat text-4xl mb-4">
-      Netzwerk-Liste
+      {nameNetwork}
       <Button caption="+" on:click={() => ((showHamburgerModal = true), (title = 'Merchant anlegen'))} />
     </h1>
-    <Link caption="Zurück zur Netzwerk-Liste" cssClass="headerLinkBackTo" href="/" />
+    <Link caption="Zurück zur Netzwerk-Liste" cssClass="headerLinkBackTo" href="/admin/network/networks/" />
     <br />
     <section id="networks" class="resultWrapper">
       <!-- label -->
-      <p class="headerLabel50">Name</p>
-      <p class="headerLabel15">Displays</p>
-      <p class="headerLabel15">Merchants</p>
+      <div class="float-left w-full h-auto mb-2">
+        <p class="float-left w-1/2 h-4 leading-4 text-left indent-10px text-xs">Name</p>
+        <p class="float-left w-1/6 h-4 leading-4 text-center text-xs">Displays</p>
+        <p class="float-left w-1/6 h-4 leading-4 text-center text-xs">Merchants</p>
+      </div>
       <!-- network_entry -->
       {#each $merchantItems as merchantItem}
         <MerchantItem
@@ -45,22 +48,11 @@
   </div>
 </div>
 
-<style>
-  .resultWrapper {
-    background: red;
-    width: 40vw;
-    height: 20rem;
-    overflow: auto;
-  }
-  .headerLabel50 {
-    float: left;
-    width: 50%;
-    font-size: 0.8rem;
-  }
-  .headerLabel15 {
-    float: left;
-    width: 15%;
-    font-size: 0.8rem;
-    text-align: center;
-  }
-</style>
+{#if showHamburgerModal}
+  <FormMerchantItem
+    on:cancel={() => (showHamburgerModal = false)}
+    on:save={addMerchantItem}
+    {showHamburgerModal}
+    {title}
+  />
+{/if}

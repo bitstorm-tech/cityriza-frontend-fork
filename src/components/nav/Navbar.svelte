@@ -7,7 +7,7 @@
   let showForm = false;
 </script>
 
-<nav class="flex bg-primary place-content-between p-4 text-white sticky top-0">
+<nav class="flex bg-primary place-content-between p-4 text-white sticky top-0 z-10">
   <Link caption="CITYRIZA" href="/" hoverUnderline />
   <div class="flex space-x-3">
     <Link caption="Kampagnie erstellen" href="/campaign" hoverUnderline />

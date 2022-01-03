@@ -11,7 +11,9 @@
   export let merchants = '0';
   $: background = 'black';
   $: cssClass = 'float-right text-white px-1.5 mr-1 border border-white rounded-md hover:shadow-lg text-xs';
-  function loadNetwork() {}
+  function loadNetwork() {
+    let nameNetwork = { name };
+  }
 
   function addNetworkItem(event) {
     showHamburgerModal = false;
@@ -24,7 +26,7 @@
   }
 </script>
 
-<div class="float-left w-full h-auto p-1.5 bg-gray-200" {id}>
+<div class="float-left w-full h-auto p-1.5 mb-1 bg-gray-200" {id}>
   <Link
     cssClass="float-left w-1/2 h-4 leading-4 text-left indent-10px text-[#ff5f42] text-sm"
     href="../network/network"

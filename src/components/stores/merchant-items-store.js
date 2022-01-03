@@ -3,21 +3,21 @@ import { writable } from 'svelte/store';
 const merchantItems = writable([
   {
     id: 'id1',
-    name: 'Netzwerk1_juhu',
-    startDate: '111',
-    endDate: '222'
+    name: 'Merchant1_aha',
+    startDate: '17.01.2022',
+    endDate: '17.01.2023'
   },
   {
     id: 'id2',
-    name: 'Netzwerk2_cool',
-    startDate: '333',
-    endDate: '444'
+    name: 'Merchant2_yes',
+    startDate: '27.03.2022',
+    endDate: '27.03.2023'
   },
   {
     id: 'id3',
-    name: 'Netzwerk3_oleole',
-    startDate: '555',
-    endDate: '777'
+    name: 'Merchant3_nadann',
+    startDate: '17.02.2022',
+    endDate: '17.02.2023'
   }
 ]);
 

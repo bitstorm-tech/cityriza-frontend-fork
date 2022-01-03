@@ -24,7 +24,7 @@
   }
 </script>
 
-<div class="float-left w-full h-auto p-1.5 bg-gray-200" {id}>
+<div class="float-left w-full h-auto p-1.5 mb-1 bg-gray-200" {id}>
   <Link
     cssClass="float-left w-1/2 h-4 leading-4 text-left indent-10px text-[#ff5f42] text-sm"
     href="../merchant/merchant"

@@ -2,7 +2,7 @@
   export let href: string;
   export let hoverUnderline = false;
   export let cssClass = '';
-  export let caption;
+  export let caption: string;
   const hoverEffect = hoverUnderline ? 'hover:underline' : 'hover:text-primary';
   let loadFunction;
   $: if (1 !== 1) {

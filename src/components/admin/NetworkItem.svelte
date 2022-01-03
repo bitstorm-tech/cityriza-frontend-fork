@@ -1,10 +1,9 @@
 <script lang="ts">
   import Button from '../../components/ui/Button.svelte';
   import Link from '../../components/ui/Link.svelte';
-  import Modal from '../../components/ui/Modal.svelte';
+  import networkItems from '../../components/stores/network-items-store.js';
+  import FormNetworkItem from './FormNetworkItem.svelte';
   let showHamburgerModal = false;
-  let editNetwork = false;
-  let showForm = false;
   let title = '';
   export let id = '';
   export let name = '';
@@ -13,9 +12,18 @@
   $: background = 'black';
   $: cssClass = 'float-right text-white px-1.5 mr-1 border border-white rounded-md hover:shadow-lg text-xs';
   function loadNetwork() {}
+
+  function addNetworkItem(event) {
+    showHamburgerModal = false;
+    const networkItemData = {
+      name: event.detail.name,
+      amountOfDisplays: event.detail.amountOfDisplays,
+      merchants: event.detail.merchants
+    };
+    networkItems.addNetworkItem(networkItemData);
+  }
 </script>
 
-<!-- network_entry -->
 <div class="float-left w-full h-auto p-1.5 bg-gray-200" {id}>
   <Link
     cssClass="float-left w-1/2 h-4 leading-4 text-left indent-10px text-[#ff5f42] text-sm"
@@ -32,17 +40,15 @@
   <Button
     caption="Edit"
     {cssClass}
-    on:click={() => ((showHamburgerModal = true), (editNetwork = true), (showForm = true), (title = 'Edit Network'))}
+    on:click={() => ((showHamburgerModal = true), (title = 'Edit Network'))}
     {background}
   />
 </div>
-<!-- Edit Network -->
-{#if showHamburgerModal && editNetwork}
-  <Modal
+{#if showHamburgerModal}
+  <FormNetworkItem
     on:cancel={() => (showHamburgerModal = false)}
-    on:submit={() => (showHamburgerModal = false)}
-    {title}
-    {showForm}
+    on:save={addNetworkItem}
     {showHamburgerModal}
+    {title}
   />
 {/if}

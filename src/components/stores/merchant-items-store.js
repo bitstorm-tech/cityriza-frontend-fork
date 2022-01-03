@@ -4,21 +4,35 @@ const merchantItems = writable([
   {
     id: 'id1',
     name: 'Netzwerk1_juhu',
-    amountOfDisplays: 111,
-    merchants: 222
+    startDate: '111',
+    endDate: '222'
   },
   {
     id: 'id2',
     name: 'Netzwerk2_cool',
-    amountOfDisplays: 333,
-    merchants: 444
+    startDate: '333',
+    endDate: '444'
   },
   {
     id: 'id3',
     name: 'Netzwerk3_oleole',
-    amountOfDisplays: 555,
-    merchants: 777
+    startDate: '555',
+    endDate: '777'
   }
 ]);
 
-export default merchantItems;
+const customMerchantItemsStore = {
+  subscribe: merchantItems.subscribe,
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  addMerchantItem: (merchantItemData) => {
+    const newMerchantItem = {
+      ...merchantItemData,
+      id: Math.random().toString()
+    };
+    merchantItems.update((items) => {
+      return [newMerchantItem, ...items];
+    });
+  }
+};
+
+export default customMerchantItemsStore;

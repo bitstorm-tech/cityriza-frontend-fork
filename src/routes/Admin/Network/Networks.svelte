@@ -1,13 +1,12 @@
 <script lang="ts">
-  import Modal from '../../../components/ui/Modal.svelte';
   import Button from '../../../components/ui/Button.svelte';
   import Link from '../../../components/ui/Link.svelte';
   import NetworkItem from '../../../components/admin/NetworkItem.svelte';
   import networkItems from '../../../components/stores/network-items-store.js';
+  import FormNetworkItem from '../../../components/admin/FormNetworkItem.svelte';
 
   let showHamburgerModal = false;
-  let showForm = false;
-  let title = 'Netzwerk anlegen';
+  let title = '';
 
   function addNetworkItem(event) {
     showHamburgerModal = false;
@@ -24,10 +23,7 @@
   <div class="w-5/6 lg:w-3/3 space-y-3">
     <h1 class="text-center font-caveat text-4xl mb-4">
       Netzwerk-Liste
-      <Button
-        caption="+"
-        on:click={() => ((showHamburgerModal = true), (showForm = true), (title = 'Create Network'))}
-      />
+      <Button caption="+" on:click={() => ((showHamburgerModal = true), (title = 'Netzwerk anlegen'))} />
     </h1>
     <Link caption="Zurück zur Startseite" cssClass="headerLinkBackTo" href="/" />
     <br />
@@ -50,12 +46,11 @@
 </div>
 
 {#if showHamburgerModal}
-  <Modal
+  <FormNetworkItem
     on:cancel={() => (showHamburgerModal = false)}
     on:save={addNetworkItem}
-    {title}
-    {showForm}
     {showHamburgerModal}
+    {title}
   />
 {/if}
 

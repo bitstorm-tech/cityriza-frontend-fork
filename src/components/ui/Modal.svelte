@@ -1,49 +1,14 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
-  import Input from '../../components/ui/Input.svelte';
-  import Button from './Button.svelte';
-  export let title;
-  export let showHamburgerModal;
-  export let showForm;
-  let formIsValid = false;
-  let name = '';
-  let amountOfDisplays = '';
-  let merchants = '';
-  let startDate = '';
-  let endDate = '';
-  let networkRelated = false;
-  let merchantRelated = false;
+  import Button from '../../components/ui/Button.svelte';
+  export let title: string;
+  export let showHamburgerModal: boolean;
+  export let showForm: boolean;
   const dispatch = createEventDispatcher();
 
   function closeModal() {
     dispatch('cancel');
     showHamburgerModal = false;
-  }
-
-  $: if (
-    (name.length > 0 && amountOfDisplays.length > 0 && merchants.length > 0) ||
-    (name.length > 0 && startDate.length > 0 && endDate.length > 0)
-  ) {
-    formIsValid = true;
-  } else {
-    formIsValid = false;
-  }
-  $: if (title === 'Create Network' || title === 'Edit Network') {
-    networkRelated = true;
-  } else {
-    networkRelated = false;
-  }
-  $: if (title === 'Create Merchant' || title === 'Edit Merchant') {
-    merchantRelated = true;
-  } else {
-    merchantRelated = false;
-  }
-  function submitForm() {
-    dispatch('save', {
-      name: name,
-      amountOfDisplays: amountOfDisplays,
-      merchants: merchants
-    });
   }
 </script>
 
@@ -56,57 +21,12 @@
     {#if !showForm}
       <slot />
     {/if}
-    <!-- networkRelated -->
-    {#if showForm && networkRelated}
-      <form on:submit|preventDefault={submitForm}>
-        <Input bind:value={name} id="name" type="text" label="Name des Netzwerks" placeholder="Name des Netzwerks" />
-        <Input
-          bind:value={amountOfDisplays}
-          id="amountOfDisplays"
-          type="text"
-          label="Anzahl der Displays"
-          placeholder="Anzahl der Displays"
-        />
-        <Input
-          bind:value={merchants}
-          id="merchants"
-          type="text"
-          label="Anzahl der Merchants"
-          placeholder="Anzahl der Merchants"
-        />
-        <footer>
-          <slot name="footer">
-            <Button caption="Schließen" on:click={closeModal} />
-          </slot>
-          {#if showForm}
-            <slot name="submit">
-              <Button caption="Sichern" {formIsValid} type="submit" />
-            </slot>
-          {/if}
-        </footer>
-      </form>
-    {/if}
-    <!-- merchantRelated -->
-    {#if showForm && merchantRelated}
-      <form on:submit|preventDefault={submitForm}>
-        <Input bind:value={name} id="name" type="text" label="Name des Merchants" placeholder="Name des Merchants" />
-        <Input
-          bind:value={startDate}
-          id="startDate"
-          type="text"
-          label="Start der Mitgliedschaft"
-          placeholder="Start der Mitgliedschaft dd-mm-yyyy"
-        />
-        <Input
-          bind:value={endDate}
-          id="endDate"
-          type="text"
-          label="Ende der Mitgliedschaft"
-          placeholder="Ende der Mitgliedschaft dd-mm-yyyy"
-        />
-      </form>
-    {/if}
   </div>
+  <footer>
+    <slot name="footer">
+      <Button caption="Schließen" type="button" on:click={closeModal} />
+    </slot>
+  </footer>
 </div>
 
 <style>

@@ -1,70 +1,54 @@
 <script lang="ts">
   import Button from '../../components/ui/Button.svelte';
-  import Modal from '../../components/ui/Modal.svelte';
+  import Link from '../../components/ui/Link.svelte';
+  import merchantItems from '../../components/stores/merchant-items-store.js';
+  import FormMerchantItem from './FormMerchantItem.svelte';
   let showHamburgerModal = false;
-  let editNetwork = false;
-  let showForm = false;
   let title = '';
   export let id = '';
   export let name = '';
-  export let amountOfDisplays = '0';
-  export let merchants = '0';
+  export let startDate = '0';
+  export let endDate = '0';
   $: background = 'black';
+  $: cssClass = 'float-right text-white px-1.5 mr-1 border border-white rounded-md hover:shadow-lg text-xs';
   function loadMerchant() {}
+
+  function addMerchantItem(event) {
+    showHamburgerModal = false;
+    const merchantItemData = {
+      name: event.detail.name,
+      startDate: event.detail.startDate,
+      endDate: event.detail.endDate
+    };
+    merchantItems.addMerchantItem(merchantItemData);
+  }
 </script>
 
-<div class="resultWrapper">
-  <p class="headerLabel50">Name</p>
-  <p class="headerLabel15">Displays</p>
-  <p class="headerLabel15">Merchants</p>
-  <div class="entryWrapper">
-    <a class="linkEntry" on:click={loadMerchant} href="/terms">{name}</a>
-    <p class="headerLabel15">1</p>
-    <p class="headerLabel15" style="margin-right: 5%;">57</p>
-    <Button
-      caption="Edit"
-      on:click={() => ((showHamburgerModal = true), (editNetwork = true), (showForm = true), (title = 'Edit Merchant'))}
-      {background}
-    />
-  </div>
+<div class="float-left w-full h-auto p-1.5 bg-gray-200" {id}>
+  <Link
+    cssClass="float-left w-1/2 h-4 leading-4 text-left indent-10px text-[#ff5f42] text-sm"
+    href="../merchant/merchant"
+    on:click={loadMerchant}
+    caption={name}
+  />
+  <h4 class="float-left w-1/6 h-4 leading-4 text-center text-sm">
+    {startDate}
+  </h4>
+  <h4 class="float-left w-1/6 h-4 leading-4 text-center mr-1 text-sm">
+    {endDate}
+  </h4>
+  <Button
+    caption="Edit"
+    {cssClass}
+    on:click={() => ((showHamburgerModal = true), (title = 'Edit Merchant'))}
+    {background}
+  />
 </div>
-{#if showHamburgerModal && editNetwork}
-  <Modal
+{#if showHamburgerModal}
+  <FormMerchantItem
     on:cancel={() => (showHamburgerModal = false)}
-    on:submit={() => (showHamburgerModal = false)}
-    {title}
-    {showForm}
+    on:save={addMerchantItem}
     {showHamburgerModal}
+    {title}
   />
 {/if}
-
-<style>
-  .resultWrapper {
-    background: red;
-    width: 40vw;
-    height: 20rem;
-    overflow: auto;
-  }
-  .headerLabel15 {
-    float: left;
-    width: 15%;
-    font-size: 0.8rem;
-    text-align: center;
-  }
-  .headerLabel50 {
-    float: left;
-    width: 50%;
-    font-size: 0.8rem;
-  }
-  .entryWrapper {
-    float: left;
-    background: lightblue;
-    width: 100%;
-    height: auto;
-  }
-  .linkEntry {
-    float: left;
-    width: 50%;
-    color: rgb(255, 95, 66);
-  }
-</style>

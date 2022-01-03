@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { writable } from 'svelte/store';
 
 const networkItems = writable([
@@ -23,7 +24,6 @@ const networkItems = writable([
 
 const customNetworkItemsStore = {
   subscribe: networkItems.subscribe,
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   addNetworkItem: (networkItemData) => {
     const newNetworkItem = {
       ...networkItemData,
@@ -31,6 +31,20 @@ const customNetworkItemsStore = {
     };
     networkItems.update((items) => {
       return [newNetworkItem, ...items];
+    });
+  },
+  removeNetworkItem: (id) => {
+    networkItems.update((items) => {
+      return items.filter((i) => i.id !== id);
+    });
+  },
+  updateNetworkItems: (id, networkItemData) => {
+    networkItems.update((items) => {
+      const networkItemIndex = items.findIndex((i) => i.id === id);
+      const updateNetworkItem = { ...items[networkItemIndex], networkItemData };
+      const updatedNetworkItems = [...items];
+      updatedNetworkItems[networkItemIndex] = updateNetworkItem;
+      return updatedNetworkItems;
     });
   }
 };

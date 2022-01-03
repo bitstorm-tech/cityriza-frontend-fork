@@ -2,21 +2,22 @@
   export let type = '';
   export let background = '';
   export let formIsValid = true;
+  export let disabled = false;
   export let caption;
   export let cssClass = 'bg-primary text-white p-2 border border-white rounded-md hover:shadow-lg';
 </script>
 
-{#if type === 'submit'}
+{#if caption === 'Sichern'}
   <button
     class={!formIsValid
       ? 'buttonDisabled text-white p-2 border border-white rounded-md'
       : 'submitOk text-white p-2 border border-white rounded-md hover:shadow-lg'}
     {type}
-    disabled={!formIsValid}
+    {disabled}
     on:click>{caption}</button
   >
 {:else}
-  <button class={cssClass} {type} style="background: {background}" on:click>{caption}</button>
+  <button class={cssClass} {disabled} {type} style="background: {background}" on:click>{caption}</button>
 {/if}
 
 <style>

@@ -3,7 +3,7 @@
   import Link from '../../../components/ui/Link.svelte';
   import MerchantItem from '../../../components/admin/MerchantItem.svelte';
   import merchantItems from '../../../components/stores/merchant-items-store.js';
-  import FormMerchantItem from '../../../components/admin/FormMerchantItem.svelte';
+  import FormMerchantItem from '../../../components/admin/EditMerchantItem.svelte';
 
   let showHamburgerModal = false;
   let title = '';

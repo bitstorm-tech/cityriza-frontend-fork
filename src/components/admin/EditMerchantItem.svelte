@@ -1,63 +1,63 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
-  import networkItems from '../../components/stores/network-items-store.js';
+  import merchantItems from '../../components/stores/merchant-items-store.js';
   import Input from '../../components/ui/Input.svelte';
   import Button from '../../components/ui/Button.svelte';
   export let showHamburgerModal: boolean;
   export let title = '';
   let formIsValid = false;
   let name = '';
-  let amountOfDisplays = '';
-  let merchants = '';
+  let startDate = '';
+  let endDate = '';
   const dispatch = createEventDispatcher();
 
-  function closeModal() {
+  function cancel() {
     dispatch('cancel');
     showHamburgerModal = false;
   }
 
   function submitForm() {
-    const networkItemData = {
+    const merchantItemData = {
       name: name,
-      amountOfDisplays: amountOfDisplays,
-      merchants: merchants
+      startDate: startDate,
+      endDate: endDate
     };
-    networkItems.addNetworkItem(networkItemData);
+    merchantItems.addMerchantItem(merchantItemData);
     dispatch('save');
   }
 
-  $: if (name.length > 0 && amountOfDisplays.length > 0 && merchants.length > 0) {
+  $: if (name.length > 0 && startDate.length > 0 && endDate.length > 0) {
     formIsValid = true;
   } else {
     formIsValid = false;
   }
 </script>
 
-<div class="modal-backdrop" on:click={closeModal} />
+<div class="modal-backdrop" on:click={cancel} />
 <div class="modal">
   {#if title}
     <h1>{title}</h1>
   {/if}
   <div class="content">
     <form on:submit|preventDefault={submitForm}>
-      <Input bind:value={name} id="name" type="text" label="Name des Netzwerks" placeholder="Name des Netzwerks" />
+      <Input bind:value={name} id="name" type="text" label="Name des Merchants" placeholder="Name des Merchants" />
       <Input
-        bind:value={amountOfDisplays}
-        id="amountOfDisplays"
+        bind:value={startDate}
+        id="startDate"
         type="text"
-        label="Anzahl der Displays"
-        placeholder="Anzahl der Displays"
+        label="Start der Mitgliedschaft"
+        placeholder="Start der Mitgliedschaft dd-mm-yyyy"
       />
       <Input
-        bind:value={merchants}
-        id="merchants"
+        bind:value={endDate}
+        id="endDate"
         type="text"
-        label="Anzahl der Merchants"
-        placeholder="Anzahl der Merchants"
+        label="Ende der Mitgliedschaft"
+        placeholder="Ende der Mitgliedschaft dd-mm-yyyy"
       />
       <footer>
         <slot name="footer">
-          <Button caption="Schließen" type="button" on:click={closeModal} />
+          <Button caption="Schließen" type="button" on:click={cancel} />
         </slot>
         <slot name="submit">
           <Button caption="Sichern" {formIsValid} type="submit" />

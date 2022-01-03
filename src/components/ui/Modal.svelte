@@ -2,29 +2,26 @@
   import { createEventDispatcher } from 'svelte';
   import Button from '../../components/ui/Button.svelte';
   export let title: string;
-  export let showHamburgerModal: boolean;
-  export let showForm: boolean;
+  let showHamburgerModal: boolean;
   const dispatch = createEventDispatcher();
 
-  function closeModal() {
+  function cancel() {
     dispatch('cancel');
     showHamburgerModal = false;
   }
 </script>
 
-<div class="modal-backdrop" on:click={closeModal} />
+<div class="modal-backdrop" on:click={cancel} />
 <div class="modal">
   {#if title}
     <h1>{title}</h1>
   {/if}
   <div class="content">
-    {#if !showForm}
-      <slot />
-    {/if}
+    <slot />
   </div>
   <footer>
     <slot name="footer">
-      <Button caption="Schließen" type="button" on:click={closeModal} />
+      <Button caption="Schließen" type="button" on:click={cancel} />
     </slot>
   </footer>
 </div>
@@ -39,7 +36,6 @@
     background: rgba(0, 0, 0, 0.75);
     z-index: 10;
   }
-
   .modal {
     position: fixed;
     top: 10vh;
@@ -52,7 +48,6 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     overflow: scroll;
   }
-
   h1 {
     padding: 1rem;
     margin: 0;
@@ -61,13 +56,11 @@
     color: white;
     background: rgb(255, 95, 66);
   }
-
   .content {
     padding: 1rem;
   }
-
   footer {
-    padding: 1rem;
+    padding: 0 1rem 1rem 1rem;
   }
   @media (min-width: 768px) {
     .modal {

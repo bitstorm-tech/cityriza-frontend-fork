@@ -1,10 +1,9 @@
 <script lang="ts">
   import Button from '../../../components/ui/Button.svelte';
   import Link from '../../../components/ui/Link.svelte';
+  import EditNetworkItem from '../../../components/admin/EditNetworkItem.svelte';
   import NetworkItem from '../../../components/admin/NetworkItem.svelte';
   import networkItems from '../../../components/stores/network-items-store.js';
-  import FormNetworkItem from '../../../components/admin/FormNetworkItem.svelte';
-
   let showHamburgerModal = false;
   let title = '';
 </script>
@@ -31,6 +30,8 @@
           name={networkItem.name}
           amountOfDisplays={networkItem.amountOfDisplays}
           merchants={networkItem.merchants}
+          on:showdetails
+          on:edit
         />
       {/each}
     </section>
@@ -38,7 +39,7 @@
 </div>
 
 {#if showHamburgerModal}
-  <FormNetworkItem
+  <EditNetworkItem
     on:cancel={() => (showHamburgerModal = false)}
     on:save={() => (showHamburgerModal = false)}
     {showHamburgerModal}

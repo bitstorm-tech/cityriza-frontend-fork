@@ -1,7 +1,7 @@
 <script lang="ts">
   import Button from '../../components/ui/Button.svelte';
   import Link from '../../components/ui/Link.svelte';
-  import FormMerchantItem from './FormMerchantItem.svelte';
+  import EditMerchantItem from './EditMerchantItem.svelte';
   let showHamburgerModal = false;
   let title = '';
   export let id = '';
@@ -34,7 +34,7 @@
   />
 </div>
 {#if showHamburgerModal}
-  <FormMerchantItem
+  <EditMerchantItem
     on:cancel={() => (showHamburgerModal = false)}
     on:save={() => (showHamburgerModal = false)}
     {showHamburgerModal}

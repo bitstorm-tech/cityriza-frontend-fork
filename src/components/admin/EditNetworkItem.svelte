@@ -33,17 +33,36 @@
   $: merchantsValid = !isEmpty(merchants);
   $: formIsValid = nameValid && amountOfDisplaysValid && merchantsValid;
 
+  // function deleteNetworkItem() {
+  //   networkItems.removeNetworkItem(id);
+  //   dispatch('save');
+  // }
+
   function deleteNetworkItem() {
-    networkItems.removeNetworkItem(id);
-    dispatch('save');
+    fetch(`https://svelte-course.firebaseio.com/meetups/${id}.json`, {
+      method: "DELETE"
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("An error occurred, please try again!");
+        }
+        networkItems.removeNetworkItem(id);
+      })
+      .catch(err => console.log(err));
+    dispatch("save");
   }
+
+  function cancel() {
+    dispatch("cancel");
+  }
+</script>
 
   function cancel() {
     dispatch('cancel');
     showModal = false;
   }
 
-  // DATABASE
+  // DATABASE_JOSEF
   let errorMessage: string;
 
   async function submit(event) {
@@ -70,13 +89,61 @@
       amountOfDisplays: amountOfDisplays,
       merchants: merchants
     };
+    // EDIT
     if (id) {
-      networkItems.updateNetworkItem(id, networkItemData);
+      fetch(`https://svelte-course.firebaseio.com/networkitems/${id}.json`, {
+        method: 'PATCH',
+        body: JSON.stringify(networkItemData),
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('An error occurred, please try again!');
+          }
+          networkItems.updateNetworkItem(id, networkItemData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
-      networkItems.addNetworkItem(networkItemData);
+      // CREATE
+      fetch('https://svelte-course.firebaseio.com/networkitems.json', {
+        method: 'POST',
+        body: JSON.stringify({ ...networkItemData }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('An error occurred, please try again!');
+          }
+          return res.json();
+        })
+        .then((data) => {
+          networkItems.addNetworkItem({
+            ...networkItemData,
+            id: data.name
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
     dispatch('save');
   }
+  // OLD_CODE_WITHOUT_DATABASE
+  // function submitForm() {
+  //   const networkItemData = {
+  //     name: name,
+  //     amountOfDisplays: amountOfDisplays,
+  //     merchants: merchants
+  //   };
+  //   if (id) {
+  //     networkItems.updateNetworkItem(id, networkItemData);
+  //   } else {
+  //     networkItems.addNetworkItem(networkItemData);
+  //   }
+  //   dispatch('save');
+  // }
 </script>
 
 <Modal {title} on:cancel>

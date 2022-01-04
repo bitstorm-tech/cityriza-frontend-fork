@@ -33,8 +33,22 @@
   $: endDateValid = !isEmpty(endDate);
   $: formIsValid = nameValid && startDateValid && endDateValid;
 
+  // function deleteMerchantItem() {
+  //   merchantItems.removeMerchantItem(id);
+  //   dispatch('save');
+  // }
+
   function deleteMerchantItem() {
-    merchantItems.removeMerchantItem(id);
+    fetch(`https://svelte-course.firebaseio.com/meetups/${id}.json`, {
+      method: 'DELETE'
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('An error occurred, please try again!');
+        }
+        merchantItems.removeMerchantItem(id);
+      })
+      .catch((err) => console.log(err));
     dispatch('save');
   }
 
@@ -43,7 +57,7 @@
     showModal = false;
   }
 
-  // DATABASE
+  // DATABASE_JOSEF
   let errorMessage: string;
 
   async function submit(event) {
@@ -70,13 +84,62 @@
       startDate: startDate,
       endDate: endDate
     };
+    // EDIT
     if (id) {
-      merchantItems.updateMerchantItem(id, merchantItemData);
+      fetch(`https://svelte-course.firebaseio.com/networkitems/${id}.json`, {
+        method: 'PATCH',
+        body: JSON.stringify(merchantItemData),
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('An error occurred, please try again!');
+          }
+          merchantItems.updateMerchantItem(id, merchantItemData);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
-      merchantItems.addMerchantItem(merchantItemData);
+      // CREATE
+      fetch('https://svelte-course.firebaseio.com/networkitems.json', {
+        method: 'POST',
+        body: JSON.stringify({ ...merchantItemData }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('An error occurred, please try again!');
+          }
+          return res.json();
+        })
+        .then((data) => {
+          merchantItems.addMerchantItem({
+            ...merchantItemData,
+            id: data.name
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
     dispatch('save');
   }
+
+  // OLD_CODE_WITHOUT_DATABASE
+  // function submitForm() {
+  //   const merchantItemData = {
+  //     name: name,
+  //     startDate: startDate,
+  //     endDate: endDate
+  //   };
+  //   if (id) {
+  //     merchantItems.updateMerchantItem(id, merchantItemData);
+  //   } else {
+  //     merchantItems.addMerchantItem(merchantItemData);
+  //   }
+  //   dispatch('save');
+  // }
 </script>
 
 <Modal {title} on:cancel>

@@ -23,7 +23,6 @@ const merchantItems = writable([
 
 const customMerchantItemsStore = {
   subscribe: merchantItems.subscribe,
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   addMerchantItem: (merchantItemData) => {
     const newMerchantItem = {
       ...merchantItemData,
@@ -31,6 +30,20 @@ const customMerchantItemsStore = {
     };
     merchantItems.update((items) => {
       return [newMerchantItem, ...items];
+    });
+  },
+  removeMerchantItem: (id) => {
+    merchantItems.update((items) => {
+      return items.filter((i) => i.id !== id);
+    });
+  },
+  updateMerchantItem: (id, merchantItemData) => {
+    merchantItems.update((items) => {
+      const merchantItemIndex = items.findIndex((i) => i.id === id);
+      const updateMerchantItem = { ...items[merchantItemIndex], ...merchantItemData };
+      const updatedMerchantItems = [...items];
+      updatedMerchantItems[merchantItemIndex] = updateMerchantItem;
+      return updatedMerchantItems;
     });
   }
 };

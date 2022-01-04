@@ -11,10 +11,10 @@
   export let merchants = '0';
   $: background = 'black';
   $: cssClass = 'float-right text-white px-1.5 mr-1 border border-white rounded-md hover:shadow-lg text-xs';
+  const dispatch = createEventDispatcher();
   function showDetail() {
     // let nameNetwork = { name };
   }
-  const dispatch = createEventDispatcher();
 </script>
 
 <div class="float-left w-full h-auto p-1.5 mb-1 bg-gray-200" {id}>

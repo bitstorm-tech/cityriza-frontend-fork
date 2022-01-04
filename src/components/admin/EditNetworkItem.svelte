@@ -12,7 +12,6 @@
   let amountOfDisplays = '';
   let merchants = '';
   let formIsValid = false;
-  console.log(title);
 
   if (id) {
     const unsubscribe = networkItems.subscribe((items) => {

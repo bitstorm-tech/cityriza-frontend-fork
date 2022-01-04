@@ -4,16 +4,16 @@
   import MerchantItem from '../../../components/admin/MerchantItem.svelte';
   import merchantItems from '../../../components/stores/merchant-items-store.js';
   import FormMerchantItem from '../../../components/admin/EditMerchantItem.svelte';
-
   let showModal = false;
   let title = '';
-  export let nameNetwork = '';
+  // export let networkId;
+  export let nameNetwork;
 </script>
 
 <div class="flex items-center justify-center mt-10 mb-32">
   <div class="w-5/6 lg:w-3/3 space-y-3">
     <h1 class="text-center font-caveat text-4xl mb-4">
-      {nameNetwork}
+      {nameNetwork}MISSING - script context="module"
       <Button caption="+" on:click={() => ((showModal = true), (title = 'Merchant anlegen'))} />
     </h1>
     <Link caption="Zurück zur Netzwerk-Liste" cssClass="headerLinkBackTo" href="/admin/network/networks/" />
@@ -39,5 +39,11 @@
 </div>
 
 {#if showModal}
-  <FormMerchantItem on:cancel={() => (showModal = false)} on:save={() => (showModal = false)} {showModal} {title} />
+  <svelte:component
+    this={FormMerchantItem}
+    on:cancel={() => (showModal = false)}
+    on:save={() => (showModal = false)}
+    {showModal}
+    {title}
+  />
 {/if}

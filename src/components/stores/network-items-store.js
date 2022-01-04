@@ -41,7 +41,7 @@ const customNetworkItemsStore = {
   updateNetworkItem: (id, networkItemData) => {
     networkItems.update((items) => {
       const networkItemIndex = items.findIndex((i) => i.id === id);
-      const updateNetworkItem = { ...items[networkItemIndex], networkItemData };
+      const updateNetworkItem = { ...items[networkItemIndex], ...networkItemData };
       const updatedNetworkItems = [...items];
       updatedNetworkItems[networkItemIndex] = updateNetworkItem;
       return updatedNetworkItems;

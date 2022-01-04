@@ -2,12 +2,12 @@
   import { createEventDispatcher } from 'svelte';
   import Button from '../../components/ui/Button.svelte';
   export let title: string;
-  let showHamburgerModal: boolean;
+  let showModal: boolean;
   const dispatch = createEventDispatcher();
 
   function cancel() {
     dispatch('cancel');
-    showHamburgerModal = false;
+    showModal = false;
   }
 </script>
 

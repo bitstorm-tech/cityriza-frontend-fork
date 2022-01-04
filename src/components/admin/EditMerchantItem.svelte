@@ -3,7 +3,7 @@
   import merchantItems from '../../components/stores/merchant-items-store.js';
   import Input from '../../components/ui/Input.svelte';
   import Button from '../../components/ui/Button.svelte';
-  export let showHamburgerModal: boolean;
+  export let showModal: boolean;
   export let title = '';
   let formIsValid = false;
   let name = '';
@@ -13,7 +13,7 @@
 
   function cancel() {
     dispatch('cancel');
-    showHamburgerModal = false;
+    showModal = false;
   }
 
   function submitForm() {

@@ -4,7 +4,7 @@
   import EditNetworkItem from '../../../components/admin/EditNetworkItem.svelte';
   import NetworkItem from '../../../components/admin/NetworkItem.svelte';
   import networkItems from '../../../components/stores/network-items-store.js';
-  let showHamburgerModal = false;
+  let showModal = false;
   let title = '';
 </script>
 
@@ -12,7 +12,7 @@
   <div class="w-5/6 lg:w-3/3 space-y-3">
     <h1 class="text-center font-caveat text-4xl mb-4">
       Netzwerk-Liste
-      <Button caption="+" on:click={() => ((showHamburgerModal = true), (title = 'Netzwerk anlegen'))} />
+      <Button caption="+" on:click={() => ((showModal = true), (title = 'Netzwerk anlegen'))} />
     </h1>
     <Link caption="Zurück zur Startseite" cssClass="headerLinkBackTo" href="/" />
     <br />
@@ -38,11 +38,6 @@
   </div>
 </div>
 
-{#if showHamburgerModal}
-  <EditNetworkItem
-    on:cancel={() => (showHamburgerModal = false)}
-    on:save={() => (showHamburgerModal = false)}
-    {showHamburgerModal}
-    {title}
-  />
+{#if showModal}
+  <EditNetworkItem on:cancel={() => (showModal = false)} on:save={() => (showModal = false)} {showModal} {title} />
 {/if}

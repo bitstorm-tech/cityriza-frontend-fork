@@ -3,7 +3,7 @@
   import Link from '../ui/Link.svelte';
   import Modal from '../ui/Modal.svelte';
   let title = 'Willkommen bei Cityriza';
-  let showHamburgerModal = false;
+  let showModal = false;
   let showForm = false;
 </script>
 
@@ -13,34 +13,29 @@
     <Link caption="Kampagnie erstellen" href="/campaign" hoverUnderline />
     <span>|</span>
     <Link caption="LOGIN" href="/login" hoverUnderline />
-    <div on:click={() => (showHamburgerModal = true)}>
+    <div on:click={() => (showModal = true)}>
       <HamburgerIcon />
     </div>
   </div>
-  {#if showHamburgerModal}
-    <Modal on:cancel={() => (showHamburgerModal = false)} {title} {showHamburgerModal} {showForm}>
+  {#if showModal}
+    <Modal on:cancel={() => (showModal = false)} {title} {showModal} {showForm}>
       <ul>
         <h1>Konto</h1>
         <li>
-          <Link caption="Login" on:click={() => (showHamburgerModal = false)} href="/login" hoverUnderline />
+          <Link caption="Login" on:click={() => (showModal = false)} href="/login" hoverUnderline />
         </li>
         <h1>Settings</h1>
         <li>
-          <Link caption="AGB" on:click={() => (showHamburgerModal = false)} href="/terms" hoverUnderline />
+          <Link caption="AGB" on:click={() => (showModal = false)} href="/terms" hoverUnderline />
         </li>
         <li>
-          <Link caption="Datenschutz" on:click={() => (showHamburgerModal = false)} href="/privacy" hoverUnderline />
+          <Link caption="Datenschutz" on:click={() => (showModal = false)} href="/privacy" hoverUnderline />
         </li>
         <li>
-          <Link caption="Impressum" on:click={() => (showHamburgerModal = false)} href="/imprint" hoverUnderline />
+          <Link caption="Impressum" on:click={() => (showModal = false)} href="/imprint" hoverUnderline />
         </li>
         <li>
-          <Link
-            caption="Admin"
-            on:click={() => (showHamburgerModal = false)}
-            href="admin/network/networks"
-            hoverUnderline
-          />
+          <Link caption="Admin" on:click={() => (showModal = false)} href="admin/network/networks" hoverUnderline />
         </li>
       </ul>
     </Modal>

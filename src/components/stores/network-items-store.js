@@ -38,7 +38,7 @@ const customNetworkItemsStore = {
       return items.filter((i) => i.id !== id);
     });
   },
-  updateNetworkItems: (id, networkItemData) => {
+  updateNetworkItem: (id, networkItemData) => {
     networkItems.update((items) => {
       const networkItemIndex = items.findIndex((i) => i.id === id);
       const updateNetworkItem = { ...items[networkItemIndex], networkItemData };

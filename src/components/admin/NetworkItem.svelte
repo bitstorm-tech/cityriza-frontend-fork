@@ -3,7 +3,7 @@
   import Button from '../../components/ui/Button.svelte';
   import Link from '../../components/ui/Link.svelte';
   import EditNetworkItem from './EditNetworkItem.svelte';
-  let showHamburgerModal = false;
+  let showModal = false;
   let title = '';
   export let id;
   export let name = '';
@@ -33,17 +33,11 @@
   <Button
     caption="Edit"
     {cssClass}
-    on:click={() => (dispatch('edit', id), (showHamburgerModal = true), (title = 'Edit Network'))}
+    on:click={() => (dispatch('edit', id), (showModal = true), (title = 'Edit Network'))}
     {background}
   />
 </div>
 
-{#if showHamburgerModal}
-  <EditNetworkItem
-    on:cancel={() => (showHamburgerModal = false)}
-    on:save={() => (showHamburgerModal = false)}
-    {showHamburgerModal}
-    {title}
-    {id}
-  />
+{#if showModal}
+  <EditNetworkItem on:cancel={() => (showModal = false)} on:save={() => (showModal = false)} {showModal} {title} {id} />
 {/if}

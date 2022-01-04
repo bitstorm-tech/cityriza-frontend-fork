@@ -5,7 +5,7 @@
   import Input from '../../components/ui/Input.svelte';
   import Button from '../../components/ui/Button.svelte';
   import { isEmpty, isValidEmail } from '../../helpers/validation';
-  export let showHamburgerModal: boolean;
+  export let showModal: boolean;
   export let id = null;
   export let title = '';
   let name = '';
@@ -37,7 +37,7 @@
 
   function cancel() {
     dispatch('cancel');
-    showHamburgerModal = false;
+    showModal = false;
   }
 
   function submitForm() {
@@ -47,7 +47,7 @@
       merchants: merchants
     };
     if (id) {
-      networkItems.updateNetworkItems(id, networkItemData);
+      networkItems.updateNetworkItem(id, networkItemData);
     } else {
       networkItems.addNetworkItem(networkItemData);
     }

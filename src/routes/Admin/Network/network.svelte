@@ -5,7 +5,7 @@
   import merchantItems from '../../../components/stores/merchant-items-store.js';
   import FormMerchantItem from '../../../components/admin/EditMerchantItem.svelte';
 
-  let showHamburgerModal = false;
+  let showModal = false;
   let title = '';
   export let nameNetwork = '';
 </script>
@@ -14,7 +14,7 @@
   <div class="w-5/6 lg:w-3/3 space-y-3">
     <h1 class="text-center font-caveat text-4xl mb-4">
       {nameNetwork}
-      <Button caption="+" on:click={() => ((showHamburgerModal = true), (title = 'Merchant anlegen'))} />
+      <Button caption="+" on:click={() => ((showModal = true), (title = 'Merchant anlegen'))} />
     </h1>
     <Link caption="Zurück zur Netzwerk-Liste" cssClass="headerLinkBackTo" href="/admin/network/networks/" />
     <br />
@@ -38,11 +38,6 @@
   </div>
 </div>
 
-{#if showHamburgerModal}
-  <FormMerchantItem
-    on:cancel={() => (showHamburgerModal = false)}
-    on:save={() => (showHamburgerModal = false)}
-    {showHamburgerModal}
-    {title}
-  />
+{#if showModal}
+  <FormMerchantItem on:cancel={() => (showModal = false)} on:save={() => (showModal = false)} {showModal} {title} />
 {/if}

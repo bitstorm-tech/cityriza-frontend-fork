@@ -2,7 +2,7 @@
   import Button from '../../components/ui/Button.svelte';
   import Link from '../../components/ui/Link.svelte';
   import EditMerchantItem from './EditMerchantItem.svelte';
-  let showHamburgerModal = false;
+  let showModal = false;
   let title = '';
   export let id = '';
   export let name = '';
@@ -26,18 +26,8 @@
   <h4 class="float-left w-1/6 h-4 leading-4 text-center mr-1 text-sm">
     {endDate}
   </h4>
-  <Button
-    caption="Edit"
-    {cssClass}
-    on:click={() => ((showHamburgerModal = true), (title = 'Edit Merchant'))}
-    {background}
-  />
+  <Button caption="Edit" {cssClass} on:click={() => ((showModal = true), (title = 'Edit Merchant'))} {background} />
 </div>
-{#if showHamburgerModal}
-  <EditMerchantItem
-    on:cancel={() => (showHamburgerModal = false)}
-    on:save={() => (showHamburgerModal = false)}
-    {showHamburgerModal}
-    {title}
-  />
+{#if showModal}
+  <EditMerchantItem on:cancel={() => (showModal = false)} on:save={() => (showModal = false)} {showModal} {title} />
 {/if}

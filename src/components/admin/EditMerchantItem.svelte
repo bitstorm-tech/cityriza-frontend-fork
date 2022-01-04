@@ -5,6 +5,10 @@
   import Input from '../../components/ui/Input.svelte';
   import Button from '../../components/ui/Button.svelte';
   import { isEmpty, isValidEmail } from '../../helpers/validation';
+  // DATABASE
+  import { goto } from '$app/navigation';
+  import { createMerchant, getInvalidMerchantFormFields } from '$lib/merchant/merchant.service';
+
   export let showModal: boolean;
   export let id = null;
   export let title = '';
@@ -37,6 +41,27 @@
   function cancel() {
     dispatch('cancel');
     showModal = false;
+  }
+
+  // DATABASE
+  let errorMessage: string;
+
+  async function submit(event) {
+    errorMessage = null;
+    const form = event.target;
+    const invalidFields = getInvalidMerchantFormFields(form);
+
+    if (invalidFields.length > 0) {
+      errorMessage = 'Folgende Eingabefelder sind nicht korrekt: ' + invalidFields.join(', ');
+      return;
+    }
+
+    const response = await createMerchant(form.name.value, form.startDate.value, form.endDate.value);
+    if (response.ok) {
+      goto('/');
+    } else {
+      errorMessage = 'Fehler beim Anlegen des neuen Merchants';
+    }
   }
 
   function submitForm() {

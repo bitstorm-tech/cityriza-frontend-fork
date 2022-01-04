@@ -40,22 +40,17 @@
 
   function deleteNetworkItem() {
     fetch(`https://svelte-course.firebaseio.com/meetups/${id}.json`, {
-      method: "DELETE"
+      method: 'DELETE'
     })
-      .then(res => {
+      .then((res) => {
         if (!res.ok) {
-          throw new Error("An error occurred, please try again!");
+          throw new Error('An error occurred, please try again!');
         }
         networkItems.removeNetworkItem(id);
       })
-      .catch(err => console.log(err));
-    dispatch("save");
+      .catch((err) => console.log(err));
+    dispatch('save');
   }
-
-  function cancel() {
-    dispatch("cancel");
-  }
-</script>
 
   function cancel() {
     dispatch('cancel');

@@ -72,7 +72,7 @@
 
     const response = await createNetwork(form.name.value, form.amountOfDisplays.value, form.merchants.value);
     if (response.ok) {
-      goto('/');
+      goto('/admin/network/networks');
     } else {
       errorMessage = 'Fehler beim Anlegen des neuen Netzwerks';
     }

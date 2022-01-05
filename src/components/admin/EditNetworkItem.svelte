@@ -39,7 +39,7 @@
   // }
 
   function deleteNetworkItem() {
-    fetch(`https://svelte-course.firebaseio.com/meetups/${id}.json`, {
+    fetch(`/admin/network/${id}`, {
       method: 'DELETE'
     })
       .then((res) => {
@@ -86,7 +86,7 @@
     };
     // EDIT
     if (id) {
-      fetch(`https://svelte-course.firebaseio.com/networkitems/${id}.json`, {
+      fetch(`/admin/network/${id}`, {
         method: 'PATCH',
         body: JSON.stringify(networkItemData),
         headers: { 'Content-Type': 'application/json' }
@@ -102,14 +102,14 @@
         });
     } else {
       // CREATE
-      fetch('https://svelte-course.firebaseio.com/networkitems.json', {
+      fetch('/admin/network/networks', {
         method: 'POST',
         body: JSON.stringify({ ...networkItemData }),
         headers: { 'Content-Type': 'application/json' }
       })
         .then((res) => {
           if (!res.ok) {
-            throw new Error('An error occurred, please try again!');
+            throw new Error('Fehler - bitte versuche es noch einmal!');
           }
           return res.json();
         })

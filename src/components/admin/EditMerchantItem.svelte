@@ -39,7 +39,7 @@
   // }
 
   function deleteMerchantItem() {
-    fetch(`https://svelte-course.firebaseio.com/meetups/${id}.json`, {
+    fetch(`/admin/merchant/${id}.json`, {
       method: 'DELETE'
     })
       .then((res) => {
@@ -86,7 +86,7 @@
     };
     // EDIT
     if (id) {
-      fetch(`https://svelte-course.firebaseio.com/networkitems/${id}.json`, {
+      fetch(`/admin/merchant/${id}`, {
         method: 'PATCH',
         body: JSON.stringify(merchantItemData),
         headers: { 'Content-Type': 'application/json' }
@@ -102,7 +102,7 @@
         });
     } else {
       // CREATE
-      fetch('https://svelte-course.firebaseio.com/networkitems.json', {
+      fetch('/admin/network/network/', {
         method: 'POST',
         body: JSON.stringify({ ...merchantItemData }),
         headers: { 'Content-Type': 'application/json' }

@@ -3,7 +3,7 @@
   export let background = '';
   export let formIsValid = true;
   export let disabled = false;
-  export let caption;
+  export let caption: string;
   export let cssClass = 'bg-primary text-white p-2 border border-white rounded-md hover:shadow-lg';
 </script>
 

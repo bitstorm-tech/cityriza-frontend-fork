@@ -1,11 +1,11 @@
 <script context="module">
-  export async function preload({ params, query }) {
-    const res = await this.fetch(`/admin/network/networks`);
-    const data = await res.json();
-    if (res.status === 200) {
-      return { post: data };
-    } else {
-      this.error(res.status, data.message);
+  import http from '$lib/http.service';
+  export async function load() {
+    const response = await http.get('/api/networks');
+
+    if (response.status === 200) {
+      const networks = response.data;
+      return { props: { networks } };
     }
   }
 </script>
@@ -15,16 +15,26 @@
   import Link from '../../../components/ui/Link.svelte';
   import EditNetworkItem from '../../../components/admin/EditNetworkItem.svelte';
   import NetworkItem from '../../../components/admin/NetworkItem.svelte';
-  import networkItems from '../../../components/stores/network-items-store.js';
+  import type Network from '$lib/network/network.model.js';
+  export let networks: Network[] = [];
   let showModal = false;
-  let title = '';
+
+  function addNewNetwork(event) {
+    networks = [event.detail, ...networks];
+    console.log(networks);
+    showModal = false;
+  }
+
+  function deleteNetwork(event) {
+    networks = networks.filter((network) => network.id !== event.detail.id);
+  }
 </script>
 
 <div class="flex items-center justify-center mt-10 mb-32">
   <div class="w-5/6 lg:w-3/3 space-y-3">
     <h1 class="text-center font-caveat text-4xl mb-4">
       Netzwerk-Liste
-      <Button caption="+" on:click={() => ((showModal = true), (title = 'Netzwerk anlegen'))} />
+      <Button caption="+" on:click={() => (showModal = true)} />
     </h1>
     <Link caption="Zurück zur Startseite" cssClass="headerLinkBackTo" href="/" />
     <br />
@@ -36,14 +46,13 @@
         <p class="float-left w-1/6 h-4 leading-4 text-center text-xs">Merchants</p>
       </div>
       <!-- network_entry -->
-      {#each $networkItems as networkItem}
+      {#each networks as networkItem}
         <NetworkItem
           id={networkItem.id}
           name={networkItem.name}
           amountOfDisplays={networkItem.amountOfDisplays}
           merchants={networkItem.merchants}
-          on:showdetails
-          on:edit
+          on:delete={deleteNetwork}
         />
       {/each}
     </section>
@@ -51,5 +60,5 @@
 </div>
 
 {#if showModal}
-  <EditNetworkItem on:cancel={() => (showModal = false)} on:save={() => (showModal = false)} {showModal} {title} />
+  <EditNetworkItem title="Netzwerk anlegen" on:cancel={() => (showModal = false)} on:save={addNewNetwork} />
 {/if}

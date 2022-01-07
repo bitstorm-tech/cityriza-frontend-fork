@@ -4,7 +4,6 @@
   import Modal from '../ui/Modal.svelte';
   let title = 'Willkommen bei Cityriza';
   let showModal = false;
-  let showForm = false;
 </script>
 
 <nav class="flex bg-primary place-content-between p-4 text-white sticky top-0 z-10">
@@ -18,7 +17,7 @@
     </div>
   </div>
   {#if showModal}
-    <Modal on:cancel={() => (showModal = false)} {title} {showModal} {showForm}>
+    <Modal on:cancel={() => (showModal = false)} {title}>
       <ul>
         <h1>Konto</h1>
         <li>
@@ -35,7 +34,7 @@
           <Link caption="Impressum" on:click={() => (showModal = false)} href="/imprint" hoverUnderline />
         </li>
         <li>
-          <Link caption="Admin" on:click={() => (showModal = false)} href="admin/network/networks" hoverUnderline />
+          <Link caption="Admin" on:click={() => (showModal = false)} href="/admin/network/networks" hoverUnderline />
         </li>
       </ul>
     </Modal>

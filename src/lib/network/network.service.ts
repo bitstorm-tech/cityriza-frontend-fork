@@ -1,8 +1,22 @@
-import { post } from '$lib/http.service';
+import http from '$lib/http.service';
 
-export async function createNetwork(name: string, amountOfDisplays: string, merchants: string): Promise<Response> {
-  // return await post('/api/users', { email, password });
-  return await post('/api/networks', { name, amountOfDisplays, merchants });
+export async function createNetwork(name: string, amountOfDisplays: string, merchants: string): Promise<string> {
+  const response = await http.post('/api/networks', { name, amountOfDisplays, merchants });
+  return response.data.id;
+}
+
+export async function updateNetwork(
+  id: string,
+  name: string,
+  amountOfDisplays: string,
+  merchants: string
+): Promise<void> {
+  await http.patch('/api/networks', { id, name, amountOfDisplays, merchants });
+}
+
+export async function deleteNetwork(id: string): Promise<void> {
+  console.dirxml(id);
+  await http.delete(`/api/networks/${id}`);
 }
 
 export function getInvalidNetworkFormFields(form): string[] {

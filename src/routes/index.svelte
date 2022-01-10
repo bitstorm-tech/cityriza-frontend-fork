@@ -2,4 +2,6 @@
   import Homepage from '../components/landingpage/Homepage.svelte';
 </script>
 
-<Homepage />
+<div class="mb-8">
+  <Homepage />
+</div>

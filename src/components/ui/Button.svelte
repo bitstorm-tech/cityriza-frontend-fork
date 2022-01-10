@@ -17,7 +17,9 @@
     on:click>{caption}</button
   >
 {:else}
-  <button class={cssClass} {disabled} {type} style="background: {background}" on:click>{caption}</button>
+  <button class={cssClass} class:buttonDisabled={disabled} {disabled} {type} style="background: {background}" on:click
+    >{caption}</button
+  >
 {/if}
 
 <style>

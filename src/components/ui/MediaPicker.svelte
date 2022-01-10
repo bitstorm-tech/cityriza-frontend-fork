@@ -1,8 +1,7 @@
 <script lang="ts">
   import Button from './Button.svelte';
-  import { createEventDispatcher } from 'svelte';
 
-  const dispatch = createEventDispatcher();
+  export let selectedFile: File;
   let fileInput;
   let imagePreview;
 
@@ -15,7 +14,7 @@
 
     const URL = window.URL || window.webkitURL;
     imagePreview = URL.createObjectURL(file);
-    dispatch('fileSelected', { file });
+    selectedFile = file;
   }
 </script>
 

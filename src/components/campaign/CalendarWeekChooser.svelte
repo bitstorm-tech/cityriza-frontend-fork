@@ -1,9 +1,5 @@
 <script>
   export let selectedCalendarWeek = 1;
-
-  function select(calenderweek) {
-    selectedCalendarWeek = calenderweek;
-  }
 </script>
 
 <div class="flex flex-col border-2">

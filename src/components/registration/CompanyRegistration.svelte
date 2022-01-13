@@ -17,7 +17,7 @@
     'Apotheke',
     'Arzt',
     'Autohaus',
-    'Bäcker',
+    'Bäckerei',
     'Bank',
     'Biomarkt',
     'Einzelhandel',
@@ -57,13 +57,19 @@
   <Input label="Passwort" id="password" type="password" />
   <Checkbox label="Sind sie ein Verein oder Verband?" id="association" bind:checked={isAssociation} />
   {#if !isAssociation}
-    <Dropdown label="Branche" options={branchOptions} bind:selectedOption={selectedBranch} />
-    <p>Ihre Branche: {selectedBranch}</p>
+    <div class="flex gap-4 items-center">
+      <Dropdown label="Branche" options={branchOptions} bind:selectedOption={selectedBranch} />
+      {#if selectedBranch}
+        <p>{selectedBranch}</p>
+      {:else}
+        <p>Bitte wählen Sie ihre Branche aus</p>
+      {/if}
+    </div>
   {/if}
   <br />
   <Input label="Firmenname" id="name" type="text" />
   <Input label="Straße und Hausnummer" id="street" type="text" />
-  <div class="flex space-x-4">
+  <div class="flex gap-4">
     <Input label="Stadt" id="city" type="text" />
     <Input label="PLZ" id="zip" type="text" />
   </div>

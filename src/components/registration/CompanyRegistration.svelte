@@ -3,12 +3,29 @@
 
   import { companyFormToObject, getInvalidCompanyFormFields } from '$lib/company/company.service';
   import { post } from '$lib/http.service';
+  import Checkbox from '../ui/Checkbox.svelte';
+  import Dropdown from '../ui/Dropdown.svelte';
   import Input from '../ui/Input.svelte';
   import WarningMessage from '../ui/WarningMessage.svelte';
   import RegisterButton from './RegisterButton.svelte';
 
   let errorMessage: string;
   let scrollY: number;
+  let isAssociation = false;
+  let selectedBranch = '';
+  const branchOptions = [
+    'Apotheke',
+    'Arzt',
+    'Autohaus',
+    'Bäcker',
+    'Bank',
+    'Biomarkt',
+    'Einzelhandel',
+    'Fotograf',
+    'Hotel',
+    'Restaurant',
+    'Trauerbegleitung'
+  ];
 
   async function submit(event) {
     const form = event.target;
@@ -38,6 +55,11 @@
   <WarningMessage show={!!errorMessage}>{errorMessage}</WarningMessage>
   <Input label="E-Mail" id="email" type="email" />
   <Input label="Passwort" id="password" type="password" />
+  <Checkbox label="Sind sie ein Verein oder Verband?" id="association" bind:checked={isAssociation} />
+  {#if !isAssociation}
+    <Dropdown label="Branche" options={branchOptions} bind:selectedOption={selectedBranch} />
+    <p>Ihre Branche: {selectedBranch}</p>
+  {/if}
   <br />
   <Input label="Firmenname" id="name" type="text" />
   <Input label="Straße und Hausnummer" id="street" type="text" />

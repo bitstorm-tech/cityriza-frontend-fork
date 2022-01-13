@@ -1,8 +1,8 @@
 <script context="module">
-  export async function load({ page }) {
+  export async function load({ url }) {
     return {
       props: {
-        companyRegistration: page.query.get('type')?.toLowerCase() === 'company'
+        companyRegistration: url.search?.includes('company')
       }
     };
   }

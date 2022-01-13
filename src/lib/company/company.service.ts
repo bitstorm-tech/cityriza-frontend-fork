@@ -19,6 +19,8 @@ export function companyFormToObject(form): Company {
   return {
     email: form.email.value,
     password: form.password.value,
+    association: form.association.value,
+    branch: form.branch.value,
     name: form.name.value,
     street: form.street.value,
     city: form.city.value,

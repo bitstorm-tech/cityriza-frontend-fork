@@ -1,51 +1,55 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
   import HamburgerIcon from '../icons/HamburgerIcon.svelte';
+  import Dropdown from '../ui/Dropdown.svelte';
   import Link from '../ui/Link.svelte';
   import Modal from '../ui/Modal.svelte';
   let title = 'Willkommen bei Cityriza';
   let showModal = false;
+  const networkOptions = ['Ismaning / Garching / Unterföhring'];
+
+  function networkSelected(event) {
+    goto(`/network?${event.detail}`);
+  }
 </script>
 
-<nav class="flex bg-primary place-content-between p-4 text-white sticky top-0 z-10">
+<nav class="flex bg-primary place-content-between items-center px-4 py-1 text-white sticky top-0 z-10">
   <Link caption="CITYRIZA" href="/" hoverUnderline />
-  <div class="flex space-x-3">
-    <Link caption="Kampagnien" href="/campaign" hoverUnderline />
-    <span>|</span>
+  <Dropdown label="Netzwerk auswählen" options={networkOptions} on:select={networkSelected} />
+  <div class="flex gap-3">
     <Link caption="Login" href="/login" hoverUnderline />
-    <div on:click={() => (showModal = true)}>
-      <HamburgerIcon />
-    </div>
+    <HamburgerIcon on:click={() => (showModal = true)} />
   </div>
-  {#if showModal}
-    <Modal on:cancel={() => (showModal = false)} {title}>
-      <ul>
-        <h1>Konto</h1>
-        <li>
-          <Link caption="Kampagnien" on:click={() => (showModal = false)} href="/campaign" hoverUnderline />
-        </li>
-        <li>
-          <Link caption="Login" on:click={() => (showModal = false)} href="/login" hoverUnderline />
-        </li>
-        <li>
-          <Link caption="Logout" on:click={() => (showModal = false)} href="/" hoverUnderline />
-        </li>
-        <h1>Settings</h1>
-        <li>
-          <Link caption="AGB" on:click={() => (showModal = false)} href="/terms" hoverUnderline />
-        </li>
-        <li>
-          <Link caption="Datenschutz" on:click={() => (showModal = false)} href="/privacy" hoverUnderline />
-        </li>
-        <li>
-          <Link caption="Impressum" on:click={() => (showModal = false)} href="/imprint" hoverUnderline />
-        </li>
-        <li>
-          <Link caption="Admin" on:click={() => (showModal = false)} href="/admin/network/networks" hoverUnderline />
-        </li>
-      </ul>
-    </Modal>
-  {/if}
 </nav>
+{#if showModal}
+  <Modal on:cancel={() => (showModal = false)} {title}>
+    <ul>
+      <h1>Konto</h1>
+      <li>
+        <Link caption="Kampagnien" on:click={() => (showModal = false)} href="/campaign" hoverUnderline />
+      </li>
+      <li>
+        <Link caption="Login" on:click={() => (showModal = false)} href="/login" hoverUnderline />
+      </li>
+      <li>
+        <Link caption="Logout" on:click={() => (showModal = false)} href="/" hoverUnderline />
+      </li>
+      <h1>Settings</h1>
+      <li>
+        <Link caption="AGB" on:click={() => (showModal = false)} href="/terms" hoverUnderline />
+      </li>
+      <li>
+        <Link caption="Datenschutz" on:click={() => (showModal = false)} href="/privacy" hoverUnderline />
+      </li>
+      <li>
+        <Link caption="Impressum" on:click={() => (showModal = false)} href="/imprint" hoverUnderline />
+      </li>
+      <li>
+        <Link caption="Admin" on:click={() => (showModal = false)} href="/admin/network/networks" hoverUnderline />
+      </li>
+    </ul>
+  </Modal>
+{/if}
 
 <style>
   h1 {

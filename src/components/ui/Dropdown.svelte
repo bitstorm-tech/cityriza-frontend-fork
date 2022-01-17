@@ -1,8 +1,16 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
   export let label: string;
   export let options: string[] = [];
   export let selectedOption = '';
   let isOpen = false;
+
+  function selectOption(option: string) {
+    selectedOption = option;
+    dispatch('select', option);
+  }
 </script>
 
 <div class="relative inline-block text-left">
@@ -40,7 +48,7 @@
   </div>
   {#if isOpen}
     <div
-      class="origin-top-right absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+      class="origin-top absolute mt-2 w-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
       role="menu"
       aria-orientation="vertical"
       aria-labelledby="menu-button"
@@ -50,11 +58,11 @@
       <div class="py-1" role="none">
         {#each options as option, i}
           <div
-            class="text-gray-700 block px-4 py-1 text-sm hover:bg-primary hover:text-white cursor-pointer"
+            class="text-gray-700 block px-4 py-1 whitespace-nowrap text-sm hover:bg-primary hover:text-white cursor-pointer"
             role="menuitem"
             tabindex="-1"
             id="menu-item-{i}"
-            on:click={() => (selectedOption = option)}
+            on:click={() => selectOption(option)}
           >
             {option}
           </div>

@@ -17,9 +17,13 @@
     on:click>{caption}</button
   >
 {:else}
-  <button class={cssClass} class:buttonDisabled={disabled} {disabled} {type} style="background: {background}" on:click
-    ><slot /></button
-  >
+  <button class={cssClass} class:buttonDisabled={disabled} {disabled} {type} style="background: {background}" on:click>
+    {#if caption}
+      {caption}
+    {:else}
+      <slot />
+    {/if}
+  </button>
 {/if}
 
 <style>

@@ -36,3 +36,8 @@ export function getInvalidNetworkFormFields(form): string[] {
 
   return invalidFields;
 }
+
+export async function getCampaignUrls(): Promise<string[]> {
+  const response = await http.get<string[]>('/api/networks/a');
+  return response.data;
+}

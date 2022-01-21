@@ -1,21 +1,14 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import HamburgerIcon from '../icons/HamburgerIcon.svelte';
-  import Dropdown from '../ui/Dropdown.svelte';
   import Link from '../ui/Link.svelte';
   import Modal from '../ui/Modal.svelte';
   let title = 'Willkommen bei Cityriza';
   let showModal = false;
-  const networkOptions = ['Ismaning / Garching / Unterföhring'];
-
-  function networkSelected(event) {
-    goto(`/network?${event.detail}`);
-  }
 </script>
 
-<nav class="flex bg-primary place-content-between items-center px-4 py-1 text-white sticky top-0 z-10">
+<nav class="flex bg-primary place-content-between items-center p-4 text-white sticky top-0 z-10">
   <Link caption="CITYRIZA" href="/" hoverUnderline />
-  <Dropdown label="Netzwerk auswählen" options={networkOptions} on:select={networkSelected} />
   <div class="flex gap-3">
     <Link caption="Login" href="/login" hoverUnderline />
     <HamburgerIcon on:click={() => (showModal = true)} />

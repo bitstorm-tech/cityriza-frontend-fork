@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@sveltejs/adapter-node': ^1.0.0-next.66
+  '@sveltejs/adapter-vercel': ^1.0.0-next.39
   '@sveltejs/kit': next
   '@typescript-eslint/eslint-plugin': ^4.33.0
   '@typescript-eslint/parser': ^4.33.0
@@ -24,7 +24,7 @@ dependencies:
   axios: 0.24.0
 
 devDependencies:
-  '@sveltejs/adapter-node': 1.0.0-next.66
+  '@sveltejs/adapter-vercel': 1.0.0-next.39
   '@sveltejs/kit': 1.0.0-next.240_svelte@3.46.2
   '@typescript-eslint/eslint-plugin': 4.33.0_959502c0ea240e86d4d2ba8b8c0fee45
   '@typescript-eslint/parser': 4.33.0_eslint@7.32.0+typescript@4.5.5
@@ -132,10 +132,10 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /@sveltejs/adapter-node/1.0.0-next.66:
-    resolution: {integrity: sha512-CtBRv7TAo0tuPm+noYXMYHz7jeUSZlT3+eAmsBMeM+B0oB5yEyZGycAyLbMykrp1PlWgN3jg1oK6gpwHIbxrJA==}
+  /@sveltejs/adapter-vercel/1.0.0-next.39:
+    resolution: {integrity: sha512-YOPGKIILm26h22GN4/iliXce61aTG3Dq5hX8xpDx0cNuCocv0OoLfIqiGpdyJ9NIMpjwXmpVoL4+nV+yh2wcSA==}
     dependencies:
-      tiny-glob: 0.2.9
+      esbuild: 0.13.15
     dev: true
 
   /@sveltejs/kit/1.0.0-next.240_svelte@3.46.2:
@@ -1094,10 +1094,6 @@ packages:
       type-fest: 0.20.2
     dev: true
 
-  /globalyzer/0.1.0:
-    resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
-    dev: true
-
   /globby/11.1.0:
     resolution: {integrity: sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==}
     engines: {node: '>=10'}
@@ -1108,10 +1104,6 @@ packages:
       ignore: 5.2.0
       merge2: 1.4.1
       slash: 3.0.0
-    dev: true
-
-  /globrex/0.1.2:
-    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
     dev: true
 
   /graceful-fs/4.2.9:
@@ -1843,13 +1835,6 @@ packages:
 
   /text-table/0.2.0:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
-    dev: true
-
-  /tiny-glob/0.2.9:
-    resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
-    dependencies:
-      globalyzer: 0.1.0
-      globrex: 0.1.2
     dev: true
 
   /to-regex-range/5.0.1:
